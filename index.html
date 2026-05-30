@@ -667,6 +667,74 @@
       color: var(--text-muted);
       line-height: 1.65;
     }
+    .workshop-flex-heading {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .workshop-flex-intro {
+      max-width: 760px;
+      margin-bottom: 28px;
+      font-size: 0.975rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .module-card,
+    .programme-card {
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background-color: var(--card);
+      padding: 28px 24px 30px;
+    }
+    .module-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 100%;
+    }
+    .module-card .card-title,
+    .programme-card .card-title {
+      margin-bottom: 10px;
+    }
+    .module-copy,
+    .programme-copy {
+      font-size: 0.95rem;
+      line-height: 1.68;
+      color: var(--text-muted);
+    }
+    .module-duration,
+    .programme-note {
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--navy);
+      line-height: 1.6;
+    }
+    .programme-card {
+      margin-top: 24px;
+      background-color: var(--navy);
+      border-color: var(--navy);
+      box-shadow: 0 16px 32px rgba(27, 42, 59, 0.12);
+    }
+    .programme-card .pathway-card-label,
+    .programme-card .card-title,
+    .programme-card .programme-copy,
+    .programme-card .programme-note {
+      color: #fff;
+    }
+    .programme-card .pathway-card-label {
+      color: rgba(255, 255, 255, 0.72);
+    }
+    .programme-card .programme-note {
+      border-top-color: rgba(255, 255, 255, 0.18);
+    }
     .workshop-benefits {
       margin-top: 72px;
     }
@@ -931,6 +999,7 @@
       .pathways-grid,
       .benefits-grid,
       .private-grid { grid-template-columns: 1fr; }
+      .module-grid { grid-template-columns: 1fr; }
       .workshop-layout,
       .private-layout { grid-template-columns: 1fr; }
       .format-card { position: static; }
@@ -1281,7 +1350,7 @@
               </li>
               <li>
                 <span class="format-term">Length</span>
-                <span class="format-value">Full day recommended</span>
+                <span class="format-value">Flexible &mdash; single module or full programme</span>
               </li>
               <li>
                 <span class="format-term">Group size</span>
@@ -1303,47 +1372,45 @@
           </aside>
 
           <div class="fade-up">
-            <div class="workshop-steps" role="list">
-              <article class="workshop-step" role="listitem">
-                <p class="workshop-step-time">45 minutes</p>
+            <h3 class="workshop-flex-heading">Flexible formats</h3>
+            <p class="workshop-flex-intro">
+              Delivered as a single focused module or as the full programme, depending on your timetable, priorities, and group. The full programme is the complete experience; modules are a way to start.
+            </p>
+
+            <div class="module-grid fade-up-group" role="list" aria-label="Flexible workshop formats">
+              <article class="module-card" role="listitem">
                 <div>
-                  <h3 class="workshop-step-title">The shift</h3>
-                  <p class="workshop-step-desc">We begin with a clear, grounded explanation of how AI is changing learning, work, creativity, and professional capability. Students explore why domain expertise still matters, why judgement matters more rather than less, and why the strongest future candidates will be those who can think clearly while using new tools well.</p>
+                  <p class="pathway-card-label">Module 1</p>
+                  <h3 class="card-title">AI for Learning</h3>
                 </div>
+                <p class="module-copy">Using AI to revise, recall, plan essays, and understand difficult material without becoming dependent on it. Students leave with a personal, repeatable way to study with AI.</p>
+                <p class="module-duration">A focused session &mdash; around 2 hours, adaptable to your timetable</p>
               </article>
 
-              <article class="workshop-step" role="listitem">
-                <p class="workshop-step-time">75 minutes</p>
+              <article class="module-card" role="listitem">
                 <div>
-                  <h3 class="workshop-step-title">AI as a learning partner</h3>
-                  <p class="workshop-step-desc">Students complete practical exercises using AI for explanation, revision, active recall, essay planning, research support, feedback, and learning difficult concepts. They see how AI can strengthen independent learning, improve the quality of revision, and help them engage more actively with challenging material.</p>
+                  <p class="pathway-card-label">Module 2</p>
+                  <h3 class="card-title">AI for Building</h3>
                 </div>
+                <p class="module-copy">The hands-on build sprint. Students design and build a useful AI tool, assistant, or workflow tied to a real goal, and leave with something they made and can explain.</p>
+                <p class="module-duration">A focused session &mdash; around 2 hours, adaptable to your timetable</p>
               </article>
 
-              <article class="workshop-step" role="listitem">
-                <p class="workshop-step-time">60 minutes</p>
+              <article class="module-card" role="listitem">
                 <div>
-                  <h3 class="workshop-step-title">Fluency foundations</h3>
-                  <p class="workshop-step-desc">We introduce the practical habits behind good AI use: context, prompting, iteration, examples, critique, verification, and responsible use. Students experience how quickly output quality improves when they become more precise, more demanding, and more thoughtful in how they work with AI.</p>
+                  <p class="pathway-card-label">Module 3</p>
+                  <h3 class="card-title">Responsible AI &amp; Judgement</h3>
                 </div>
-              </article>
-
-              <article class="workshop-step" role="listitem">
-                <p class="workshop-step-time">2 hours</p>
-                <div>
-                  <h3 class="workshop-step-title">Build sprint</h3>
-                  <p class="workshop-step-desc">Students work individually or in small teams to design and build a useful AI-powered assistant, workflow, research tool, revision support system, subject-specific helper, or early-stage prototype. They learn how to define a problem well, scope an idea, make better implementation choices, test outputs, improve what they have built, and turn AI from something they consume into something they can direct and shape for themselves.</p>
-                </div>
-              </article>
-
-              <article class="workshop-step" role="listitem">
-                <p class="workshop-step-time">60 minutes</p>
-                <div>
-                  <h3 class="workshop-step-title">Showcase, debate, and reflection</h3>
-                  <p class="workshop-step-desc">Students present what they built, explain the problem it solves, justify the choices they made, reflect on limitations, and discuss how they would develop it further. The day closes with facilitated discussion around responsible use, future implications, and where human judgement still matters.</p>
-                </div>
+                <p class="module-copy">Where AI genuinely helps, where it fails, how to verify outputs, and how to use it with judgement. Works well as a standalone careers, PSHE, or enrichment session.</p>
+                <p class="module-duration">A focused session &mdash; around 2 hours, adaptable to your timetable</p>
               </article>
             </div>
+
+            <article class="programme-card fade-up" aria-labelledby="full-programme-heading">
+              <p class="pathway-card-label">Flagship format</p>
+              <h3 class="card-title" id="full-programme-heading">The Full Programme</h3>
+              <p class="programme-copy">All three modules delivered across a full day &mdash; the complete experience. Students learn, build, and present, moving from AI awareness to responsible, hands-on capability. This is the definitive version of the workshop; individual modules are focused entry points into it.</p>
+            </article>
 
             <p class="workshop-note">
               The workshop can be adapted for school priorities, student ability, available time, safeguarding requirements, and AI policy requirements.
