@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arslan Institute | Helping Students Thrive in the Age of AI</title>
+  <meta
+    name="description"
+    content="Practical AI fluency workshops and personalised sessions for schools, sixth forms, tuition centres, parents, and students."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f8f5ef;
+      --navy: #1b2a3b;
+      --amber: #bf8c52;
+      --amber-dark: #a6773f;
+      --text: #2e3d4f;
+      --text-muted: #6b7c8e;
+      --border: #e3dbd0;
+      --card: #ffffff;
+      --rule: #d5cdc2;
+      --whatsapp: #25a560;
+      --whatsapp-dark: #1e8a4f;
+      --font-serif: 'Fraunces', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --radius: 6px;
+      --max-width: 1120px;
+      --section-gap: 100px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    .t-display {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+    }
+    .t-heading {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: var(--navy);
+    }
+    .t-subheading {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .t-body {
+      font-size: 1.0625rem;
+      line-height: 1.72;
+      color: var(--text);
+    }
+    .t-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section { padding: var(--section-gap) 0; }
+    .divider { border: none; border-top: 1px solid var(--rule); }
+    .section-intro {
+      max-width: 780px;
+      margin-top: 16px;
+      margin-bottom: 48px;
+    }
+    .section-subcopy {
+      max-width: 780px;
+      margin-top: -20px;
+      margin-bottom: 48px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      line-height: 1;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background-color: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+    .btn-primary:hover, .btn-primary:focus-visible {
+      background-color: #263d54;
+      border-color: #263d54;
+      box-shadow: 0 2px 10px rgba(27, 42, 59, 0.22);
+    }
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--navy);
+      border-color: var(--navy);
+    }
+    .btn-secondary:hover, .btn-secondary:focus-visible {
+      background-color: var(--navy);
+      color: #fff;
+    }
+    .btn-amber {
+      background-color: var(--amber);
+      color: #fff;
+      border-color: var(--amber);
+    }
+    .btn-amber:hover, .btn-amber:focus-visible {
+      background-color: var(--amber-dark);
+      border-color: var(--amber-dark);
+      box-shadow: 0 2px 10px rgba(191, 140, 82, 0.28);
+    }
+    .btn-outline-light {
+      background-color: transparent;
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+    .btn-outline-light:hover, .btn-outline-light:focus-visible {
+      background-color: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.55);
+    }
+    .btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 280ms ease, transform 280ms ease;
+    }
+    .fade-up.is-visible { opacity: 1; transform: translateY(0); }
+    .fade-up-group > * {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 280ms ease, transform 280ms ease;
+    }
+    .fade-up-group.is-visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0ms; }
+    .fade-up-group.is-visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 60ms; }
+    .fade-up-group.is-visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 120ms; }
+    .fade-up-group.is-visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 180ms; }
+    .fade-up-group.is-visible > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 240ms; }
+    .fade-up-group.is-visible > *:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 300ms; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 18px 0;
+      transition: background-color 200ms ease, box-shadow 200ms ease;
+    }
+    .nav.scrolled {
+      background-color: rgba(248, 245, 239, 0.96);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .nav-wordmark {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-serif);
+      font-size: 1.375rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--navy);
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .nav-wordmark:hover { color: var(--amber); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: nowrap;
+    }
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      transition: color 150ms ease;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--navy); }
+    .nav-cta {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .hero {
+      padding: 80px 0 96px;
+      position: relative;
+      background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.18 0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+      background-repeat: repeat;
+    }
+    .hero-content { max-width: 820px; }
+    .hero-label { margin-bottom: 28px; }
+    .hero-headline { margin-bottom: 26px; }
+    .hero-subheadline { margin-bottom: 44px; max-width: 720px; }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .hero-note {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      max-width: 720px;
+    }
+
+    .intro-video {
+      padding: 88px 0 56px;
+      background-color: #fbf8f2;
+    }
+    .video-feature-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: linear-gradient(160deg, #1b2a3b 0%, #24384d 100%);
+      padding: 20px;
+      box-shadow: 0 18px 48px rgba(27, 42, 59, 0.12);
+    }
+    .video-embed-target {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 10px;
+      background: radial-gradient(circle at top, rgba(191, 140, 82, 0.14), transparent 34%), linear-gradient(145deg, #223447 0%, #14202d 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .video-embed-target iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    .video-placeholder-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 32px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.88);
+    }
+    .video-placeholder-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.62);
+    }
+    .video-play-icon {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .video-play-icon svg {
+      width: 24px;
+      height: 24px;
+      margin-left: 3px;
+      fill: #fff;
+    }
+    .video-placeholder-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 2vw, 1.55rem);
+      font-weight: 400;
+      color: #fff;
+    }
+    .video-placeholder-note {
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.64);
+      max-width: 420px;
+    }
+    .theme-block { margin-top: 52px; }
+    .theme-heading {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 24px;
+    }
+    .theme-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .theme-card {
+      padding: 18px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background-color: var(--card);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .theme-thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(27, 42, 59, 0.96), rgba(35, 55, 77, 0.88)), #1b2a3b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .theme-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(191, 140, 82, 0.2);
+      border-radius: 8px;
+    }
+    .theme-thumb .video-play-icon {
+      width: 58px;
+      height: 58px;
+    }
+    .theme-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .theme-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--navy);
+    }
+    .theme-desc {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+    .theme-status {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    .about { padding: var(--section-gap) 0; }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .about-photo {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 3 / 4;
+      box-shadow: 0 20px 40px rgba(27, 42, 59, 0.08);
+    }
+    .about .t-heading { margin-top: 16px; margin-bottom: 28px; }
+    .about-prose p + p { margin-top: 1.2em; }
+    .credibility-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .credibility-list li {
+      padding: 14px 16px;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--navy);
+      line-height: 1.5;
+    }
+
+    .problem {
+      background-color: var(--navy);
+      padding: var(--section-gap) 0;
+    }
+    .problem .t-label { color: var(--amber); }
+    .problem .t-heading {
+      color: #fff;
+      margin-top: 16px;
+      margin-bottom: 20px;
+      max-width: 760px;
+    }
+    .problem-intro {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+    .problem-questions {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 840px;
+      margin-bottom: 34px;
+    }
+    .problem-questions li {
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: var(--font-serif);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.88);
+    }
+    .problem-questions li:first-child { border-top: 1px solid rgba(255, 255, 255, 0.1); }
+    .problem-response {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 620px;
+    }
+
+    .outcomes { padding: var(--section-gap) 0; }
+    .outcomes .t-heading { margin-top: 16px; }
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2px;
+      background-color: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .outcome-item {
+      background-color: var(--card);
+      padding: 38px 34px;
+      transition: background-color 180ms ease;
+    }
+    .outcome-item:hover { background-color: #fefcf8; }
+    .outcome-number {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--amber);
+      opacity: 0.5;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .outcome-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .outcome-desc {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .outcomes-quote {
+      margin-top: 28px;
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--navy);
+    }
+
+    .pathways {
+      padding: var(--section-gap) 0;
+      background-color: #fbf8f2;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .pathways .t-heading { margin-top: 16px; }
+    .pathways-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .pathway-card {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 24px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 100%;
+    }
+    .pathway-card-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+    .pathway-copy {
+      font-size: 0.95rem;
+      line-height: 1.68;
+      color: var(--text-muted);
+    }
+    .pathway-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 4px 0 8px;
+      flex: 1;
+    }
+    .pathway-points li {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--navy);
+      padding-left: 18px;
+      position: relative;
+    }
+    .pathway-points li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.68em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--amber);
+      transform: translateY(-50%);
+    }
+
+    .workshop {
+      background-color: var(--card);
+      padding: var(--section-gap) 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .workshop-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 52px;
+      align-items: start;
+    }
+    .format-card {
+      padding: 28px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background-color: #fbf8f2;
+      position: sticky;
+      top: 110px;
+    }
+    .format-card-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 18px;
+    }
+    .format-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .format-list li {
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .format-term {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .format-value {
+      display: block;
+      font-size: 0.975rem;
+      color: var(--navy);
+      line-height: 1.55;
+    }
+    .workshop-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .workshop-step {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .workshop-step:first-child { border-top: 1px solid var(--border); }
+    .workshop-step-time {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--amber);
+      padding-top: 4px;
+    }
+    .workshop-step-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .workshop-step-desc {
+      font-size: 0.9625rem;
+      color: var(--text);
+      line-height: 1.68;
+    }
+    .workshop-note {
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .workshop-benefits {
+      margin-top: 72px;
+    }
+    .workshop-benefits .t-heading {
+      margin-top: 16px;
+      margin-bottom: 52px;
+    }
+    .benefits-grid,
+    .private-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .benefit-card,
+    .private-card {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 22px 26px;
+    }
+    .benefit-card p,
+    .private-card p {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+    .section-cta {
+      margin-top: 34px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .private-section {
+      padding: var(--section-gap) 0;
+      background-color: #fbf8f2;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .private-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 52px;
+      align-items: start;
+    }
+    .private-section .t-heading { margin-top: 16px; }
+    .private-cover-heading {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 24px;
+    }
+
+    .enquiry-cta {
+      background-color: var(--navy);
+      padding: 84px 0;
+      text-align: center;
+    }
+    .enquiry-cta .t-heading {
+      color: #fff;
+      margin-top: 16px;
+      margin-bottom: 18px;
+    }
+    .enquiry-cta-copy {
+      max-width: 720px;
+      margin: 0 auto 32px;
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .contact {
+      background-color: var(--navy);
+      padding: var(--section-gap) 0;
+    }
+    .contact .t-label { color: var(--amber); }
+    .contact .t-heading {
+      color: #fff;
+      margin-top: 16px;
+      margin-bottom: 12px;
+    }
+    .contact-sub {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 1rem;
+      line-height: 1.65;
+      margin-bottom: 52px;
+      max-width: 620px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.02em;
+    }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      color: var(--navy);
+      background-color: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      width: 100%;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%236b7c8e' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 160px;
+      line-height: 1.6;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(191, 140, 82, 0.15);
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: #aab4bc; }
+    .form-privacy {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.4);
+      line-height: 1.55;
+    }
+    .form-submit { align-self: flex-start; }
+    .form-success {
+      display: none;
+      padding: 32px;
+      background-color: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      text-align: center;
+    }
+    .form-success.visible { display: block; }
+    .form-success p {
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+    }
+    .contact-alt {
+      padding-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .contact-alt-label {
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.6;
+    }
+    .btn-whatsapp-lg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px 24px;
+      background-color: var(--whatsapp);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 200ms ease, box-shadow 200ms ease;
+    }
+    .btn-whatsapp-lg:hover {
+      background-color: var(--whatsapp-dark);
+      box-shadow: 0 2px 12px rgba(37, 165, 96, 0.3);
+    }
+    .whatsapp-note {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.4);
+      line-height: 1.55;
+    }
+
+    .footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-wordmark {
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+    .footer-contact {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .footer-links a {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 150ms ease;
+    }
+    .footer-links a:hover { color: var(--navy); }
+    .footer-legal {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      opacity: 0.7;
+      text-align: right;
+    }
+
+    @media (max-width: 1024px) {
+      .theme-grid,
+      .pathways-grid,
+      .benefits-grid,
+      .private-grid { grid-template-columns: 1fr; }
+      .workshop-layout,
+      .private-layout { grid-template-columns: 1fr; }
+      .format-card { position: static; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .credibility-list,
+      .outcomes-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --section-gap: 72px; }
+      .nav { padding: 14px 0; }
+      .hero { padding: 56px 0 72px; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; }
+      .hero-ctas .btn { width: 100%; justify-content: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-inner { gap: 14px; }
+      .nav-wordmark { font-size: 1.2rem; }
+      .nav .btn { padding: 12px 18px; font-size: 0.875rem; }
+      .workshop-step { grid-template-columns: 1fr; gap: 6px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-right { align-items: flex-start; }
+      .footer-links { justify-content: flex-start; }
+      .footer-legal { text-align: left; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 20px; }
+      .nav-wordmark { font-size: 1.05rem; }
+      .nav .btn { padding: 10px 14px; font-size: 0.8125rem; }
+      .pathway-card,
+      .outcome-item,
+      .theme-card,
+      .benefit-card,
+      .private-card,
+      .format-card { padding: 24px 20px; }
+      .video-feature-card { padding: 14px; }
+      .video-play-icon {
+        width: 64px;
+        height: 64px;
+      }
+      .nav-inner { gap: 14px; }
+      .nav .btn {
+        padding: 11px 14px;
+        font-size: 0.8125rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <div class="nav-inner">
+          <a href="index.html" class="nav-wordmark" aria-label="Arslan Institute home">Arslan Institute</a>
+          <div class="nav-links" aria-label="Site sections">
+            <a href="#outcomes" class="nav-link">Outcomes</a>
+            <a href="#group-workshop" class="nav-link">Group workshop</a>
+            <a href="#private-sessions" class="nav-link">Private sessions</a>
+          </div>
+          <a href="#contact" class="btn btn-primary nav-cta">Enquire</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-content">
+          <p class="t-label hero-label fade-up">AI Fluency for Ambitious Students</p>
+          <h1 class="t-display hero-headline fade-up" id="hero-heading">
+            Helping students thrive in the age of AI.
+          </h1>
+          <p class="t-subheading hero-subheadline fade-up">
+            Practical AI fluency workshops and personalised sessions that help students learn independently, think clearly, use AI responsibly, and build useful things with it.
+          </p>
+          <div class="hero-ctas fade-up">
+            <a href="#group-workshop" class="btn btn-primary">Explore school &amp; tuition workshops</a>
+            <a href="#private-sessions" class="btn btn-secondary">Explore private sessions</a>
+          </div>
+          <p class="hero-note fade-up">
+            For schools, sixth forms, tuition centres, parents, and students.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="intro-video" id="introduction" aria-labelledby="introduction-heading">
+      <div class="container">
+        <p class="t-label fade-up">Introduction</p>
+        <h2 class="t-heading fade-up" id="introduction-heading">A short introduction to Arslan Institute</h2>
+        <p class="t-body section-intro fade-up">
+          In this short video, Arslan explains why AI fluency matters now, what students need to learn, and how Arslan Institute helps schools, tuition centres, and families move beyond basic AI awareness into practical student capability.
+        </p>
+
+        <div class="video-feature-card fade-up" data-video-url="" data-video-title="A short introduction to Arslan Institute">
+          <div class="video-embed-target">
+            <div class="video-placeholder-overlay">
+              <span class="video-placeholder-label">Main introduction video</span>
+              <span class="video-play-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 5.5v13l10-6.5L8 5.5z"></path>
+                </svg>
+              </span>
+              <p class="video-placeholder-title">Main introduction video</p>
+              <p class="video-placeholder-note">Introduction video coming soon.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="theme-block">
+          <h3 class="theme-heading fade-up">Explore the core themes we teach</h3>
+          <div class="theme-grid fade-up-group" role="list">
+            <article class="theme-card" role="listitem">
+              <div class="theme-thumb" aria-hidden="true">
+                <span class="video-play-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5.5v13l10-6.5L8 5.5z"></path>
+                  </svg>
+                </span>
+              </div>
+              <div class="theme-meta">
+                <p class="theme-title">AI for better learning</p>
+                <p class="theme-desc">How students can use AI for revision, active recall, feedback, explanation, and deeper understanding.</p>
+                <p class="theme-status">Coming soon</p>
+              </div>
+            </article>
+
+            <article class="theme-card" role="listitem">
+              <div class="theme-thumb" aria-hidden="true">
+                <span class="video-play-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5.5v13l10-6.5L8 5.5z"></path>
+                  </svg>
+                </span>
+              </div>
+              <div class="theme-meta">
+                <p class="theme-title">AI for building</p>
+                <p class="theme-desc">How students can create simple assistants, workflows, and prototypes rather than only consuming AI outputs.</p>
+                <p class="theme-status">Coming soon</p>
+              </div>
+            </article>
+
+            <article class="theme-card" role="listitem">
+              <div class="theme-thumb" aria-hidden="true">
+                <span class="video-play-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5.5v13l10-6.5L8 5.5z"></path>
+                  </svg>
+                </span>
+              </div>
+              <div class="theme-meta">
+                <p class="theme-title">AI, judgement, and responsibility</p>
+                <p class="theme-desc">How students learn to question outputs, check assumptions, and use AI without outsourcing their thinking.</p>
+                <p class="theme-status">Coming soon</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about section" id="about" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="about-inner">
+          <div class="fade-up">
+            <img
+              src="headshot-2.jpg"
+              alt="Arslan Manzoor, founder of Arslan Institute"
+              class="about-photo"
+              width="340"
+              height="453"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="fade-up">
+            <p class="t-label">About</p>
+            <h2 class="t-heading" id="about-heading">Led by someone building with AI in the real world.</h2>
+            <div class="about-prose">
+              <p class="t-body">
+                Arslan Manzoor is a data science manager leading AI implementation in a major pharmaceutical company, with experience turning emerging technologies into practical tools, workflows, and decision-support systems. He is also a qualified UK pharmacist, giving him first-hand experience of what it means to combine domain expertise with modern AI capability.
+              </p>
+              <p class="t-body">
+                Arslan Institute was created to help students prepare for a world being reshaped by AI.
+              </p>
+              <p class="t-body">
+                Academic achievement still matters, but future success will increasingly depend on something more: the ability to learn independently, think critically, communicate clearly, adapt quickly, and use powerful new technologies with judgement.
+              </p>
+              <p class="t-body">
+                The students who thrive will not be those who simply consume AI outputs. They will be those who can question them, improve them, and use them to create useful things in the real world.
+              </p>
+              <p class="t-body">
+                Our mission is to help students develop those skills before they leave education.
+              </p>
+            </div>
+
+            <ul class="credibility-list" aria-label="Credibility highlights">
+              <li>Real-world AI implementation experience</li>
+              <li>Data science and product thinking</li>
+              <li>Qualified UK pharmacist</li>
+              <li>Practical, hands-on teaching style</li>
+              <li>Focus on responsible and useful AI adoption</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="problem section" id="why-this-matters" aria-labelledby="problem-heading">
+      <div class="container">
+        <p class="t-label fade-up">Why this matters</p>
+        <h2 class="t-heading fade-up" id="problem-heading">The question education leaders and parents are now facing.</h2>
+        <p class="problem-intro fade-up">
+          Students are already using AI. The challenge is no longer whether they will use it, but whether they will learn to use it well.
+        </p>
+
+        <ul class="problem-questions fade-up" role="list">
+          <li>How do we move beyond blanket warnings about AI misuse and teach students responsible, productive AI use?</li>
+          <li>How do we help students use AI to think better, not think less?</li>
+          <li>What does future-readiness look like beyond grades, university applications, and traditional digital skills?</li>
+          <li>How do we prepare students for a world where AI is changing study, work, creativity, and every profession?</li>
+        </ul>
+
+        <p class="problem-response fade-up">
+          Arslan Institute gives students a practical, structured place to start.
+        </p>
+      </div>
+    </section>
+
+    <section class="outcomes section" id="outcomes" aria-labelledby="outcomes-heading">
+      <div class="container">
+        <p class="t-label fade-up">Outcomes</p>
+        <h2 class="t-heading fade-up" id="outcomes-heading">What students walk away with.</h2>
+        <p class="t-body section-intro fade-up">
+          Not just AI awareness. Practical capability they can use immediately.
+        </p>
+
+        <div class="outcomes-grid fade-up-group" role="list">
+          <article class="outcome-item" role="listitem">
+            <p class="outcome-number" aria-hidden="true">1</p>
+            <h3 class="outcome-title">A smarter way to learn</h3>
+            <p class="outcome-desc">Students learn how to use AI for revision, active recall, explanation, essay planning, feedback, and independent study without becoming dependent on it.</p>
+          </article>
+
+          <article class="outcome-item" role="listitem">
+            <p class="outcome-number" aria-hidden="true">2</p>
+            <h3 class="outcome-title">The ability to think with AI, not outsource thinking to it</h3>
+            <p class="outcome-desc">They practise briefing AI clearly, giving context, asking better questions, challenging weak answers, checking assumptions, and improving outputs through iteration.</p>
+          </article>
+
+          <article class="outcome-item" role="listitem">
+            <p class="outcome-number" aria-hidden="true">3</p>
+            <h3 class="outcome-title">The confidence to build powerful AI tools of their own</h3>
+            <p class="outcome-desc">Students create an assistant, workflow, custom GPT-style tool, or prototype using modern AI systems, linked to a real academic, creative, or practical use case they can develop further after the workshop.</p>
+          </article>
+
+          <article class="outcome-item" role="listitem">
+            <p class="outcome-number" aria-hidden="true">4</p>
+            <h3 class="outcome-title">Responsible AI judgement</h3>
+            <p class="outcome-desc">They learn where AI is useful, where it fails, how hallucinations happen, why verification matters, and how to use AI ethically in an academic environment.</p>
+          </article>
+
+          <article class="outcome-item" role="listitem">
+            <p class="outcome-number" aria-hidden="true">5</p>
+            <h3 class="outcome-title">Creative problem-solving confidence</h3>
+            <p class="outcome-desc">The workshop helps students move from passive users to active builders: spotting problems, designing solutions, testing ideas, and improving them.</p>
+          </article>
+
+          <article class="outcome-item" role="listitem">
+            <p class="outcome-number" aria-hidden="true">6</p>
+            <h3 class="outcome-title">Debate, discussion, and presentation confidence</h3>
+            <p class="outcome-desc">Students take part in detailed discussion about the benefits, limits, risks, and practical implications of AI use, challenge one another&rsquo;s thinking, and explain what they built with clarity, confidence, and ownership.</p>
+          </article>
+        </div>
+
+        <p class="outcomes-quote fade-up">
+          We help students become capable users, critical thinkers, and confident builders.
+        </p>
+      </div>
+    </section>
+
+    <section class="pathways" id="pathways" aria-labelledby="pathways-heading">
+      <div class="container">
+        <p class="t-label fade-up">Pathways</p>
+        <h2 class="t-heading fade-up" id="pathways-heading">Choose the pathway that fits you.</h2>
+        <p class="t-body section-intro fade-up">
+          Schools and tuition centres usually need a structured group workshop. Parents usually need personalised support for one student.
+        </p>
+
+        <div class="pathways-grid fade-up-group" role="list">
+          <article class="pathway-card" role="listitem">
+            <p class="pathway-card-label">Full-day group workshop</p>
+            <h3 class="card-title">Schools &amp; Tuition Centres</h3>
+            <p class="pathway-copy">A full-day AI fluency workshop for student groups, designed for sixth forms, schools, and tuition centres that want a serious, practical programme around AI, learning, judgement, and building.</p>
+            <ul class="pathway-points" aria-label="Group workshop highlights">
+              <li>Full-day workshop</li>
+              <li>Designed for sixth form groups, with adaptations by exception</li>
+              <li>Suitable for schools, careers days, digital skills programmes, and tuition centre cohorts</li>
+              <li>Students learn, build, discuss, and present</li>
+              <li>Delivered in person, with online options by arrangement</li>
+            </ul>
+            <a href="#group-workshop" class="btn btn-secondary">Explore the group workshop</a>
+          </article>
+
+          <article class="pathway-card" role="listitem">
+            <p class="pathway-card-label">Personalised 1-to-1 session</p>
+            <h3 class="card-title">Parents &amp; Students</h3>
+            <p class="pathway-copy">A personalised AI fluency session for students who need individual support using AI for learning, thinking, revision, creativity, or building.</p>
+            <ul class="pathway-points" aria-label="Private session highlights">
+              <li>Suitable for a wider range of ages</li>
+              <li>Tailored to the student&rsquo;s interests and starting point</li>
+              <li>Focused on practical use, confidence, and responsible habits</li>
+              <li>Online initially, in-person by arrangement</li>
+              <li>Ideal for students already using AI but needing better structure</li>
+            </ul>
+            <a href="#private-sessions" class="btn btn-secondary">Explore private sessions</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="workshop section" id="group-workshop" aria-labelledby="workshop-heading">
+      <div class="container">
+        <p class="t-label fade-up">Schools &amp; Tuition Centres</p>
+        <h2 class="t-heading fade-up" id="workshop-heading">Full-day AI fluency workshops for student groups.</h2>
+        <p class="t-body section-intro fade-up">
+          A practical, interactive programme for schools and tuition centres that want students to move beyond basic AI awareness into responsible, useful, hands-on capability.
+        </p>
+        <p class="t-body section-subcopy fade-up">
+          The same core workshop can be delivered in schools, sixth forms, and tuition centre settings. It is designed primarily for sixth form students, with adaptations available by exception depending on age, ability, and context.
+        </p>
+
+        <div class="workshop-layout">
+          <aside class="format-card" aria-labelledby="format-heading">
+            <h3 class="format-card-title" id="format-heading">Workshop format</h3>
+            <ul class="format-list">
+              <li>
+                <span class="format-term">Format</span>
+                <span class="format-value">In-person group workshop</span>
+              </li>
+              <li>
+                <span class="format-term">Length</span>
+                <span class="format-value">Full day recommended</span>
+              </li>
+              <li>
+                <span class="format-term">Group size</span>
+                <span class="format-value">10-25 students ideal</span>
+              </li>
+              <li>
+                <span class="format-term">Audience</span>
+                <span class="format-value">Sixth form students primarily</span>
+              </li>
+              <li>
+                <span class="format-term">Best fit</span>
+                <span class="format-value">Academically engaged, digitally curious students</span>
+              </li>
+              <li>
+                <span class="format-term">Availability</span>
+                <span class="format-value">Online or shorter formats by arrangement</span>
+              </li>
+            </ul>
+          </aside>
+
+          <div class="fade-up">
+            <div class="workshop-steps" role="list">
+              <article class="workshop-step" role="listitem">
+                <p class="workshop-step-time">45 minutes</p>
+                <div>
+                  <h3 class="workshop-step-title">The shift</h3>
+                  <p class="workshop-step-desc">We begin with a clear, grounded explanation of how AI is changing learning, work, creativity, and professional capability. Students explore why domain expertise still matters, why judgement matters more rather than less, and why the strongest future candidates will be those who can think clearly while using new tools well.</p>
+                </div>
+              </article>
+
+              <article class="workshop-step" role="listitem">
+                <p class="workshop-step-time">75 minutes</p>
+                <div>
+                  <h3 class="workshop-step-title">AI as a learning partner</h3>
+                  <p class="workshop-step-desc">Students complete practical exercises using AI for explanation, revision, active recall, essay planning, research support, feedback, and learning difficult concepts. They see how AI can strengthen independent learning, improve the quality of revision, and help them engage more actively with challenging material.</p>
+                </div>
+              </article>
+
+              <article class="workshop-step" role="listitem">
+                <p class="workshop-step-time">60 minutes</p>
+                <div>
+                  <h3 class="workshop-step-title">Fluency foundations</h3>
+                  <p class="workshop-step-desc">We introduce the practical habits behind good AI use: context, prompting, iteration, examples, critique, verification, and responsible use. Students experience how quickly output quality improves when they become more precise, more demanding, and more thoughtful in how they work with AI.</p>
+                </div>
+              </article>
+
+              <article class="workshop-step" role="listitem">
+                <p class="workshop-step-time">2 hours</p>
+                <div>
+                  <h3 class="workshop-step-title">Build sprint</h3>
+                  <p class="workshop-step-desc">Students work individually or in small teams to design and build a useful AI-powered assistant, workflow, research tool, revision support system, subject-specific helper, or early-stage prototype. They learn how to define a problem well, scope an idea, make better implementation choices, test outputs, improve what they have built, and turn AI from something they consume into something they can direct and shape for themselves.</p>
+                </div>
+              </article>
+
+              <article class="workshop-step" role="listitem">
+                <p class="workshop-step-time">60 minutes</p>
+                <div>
+                  <h3 class="workshop-step-title">Showcase, debate, and reflection</h3>
+                  <p class="workshop-step-desc">Students present what they built, explain the problem it solves, justify the choices they made, reflect on limitations, and discuss how they would develop it further. The day closes with facilitated discussion around responsible use, future implications, and where human judgement still matters.</p>
+                </div>
+              </article>
+            </div>
+
+            <p class="workshop-note">
+              The workshop can be adapted for school priorities, student ability, available time, safeguarding requirements, and AI policy requirements.
+            </p>
+
+            <div class="workshop-benefits">
+              <p class="t-label fade-up">Institution benefits</p>
+              <h3 class="t-heading fade-up">What schools and tuition centres gain.</h3>
+              <div class="benefits-grid fade-up-group" role="list">
+                <article class="benefit-card" role="listitem">
+                  <h4 class="card-title">A credible AI fluency programme</h4>
+                  <p>Give students practical exposure to AI without needing to design an internal programme from scratch.</p>
+                </article>
+                <article class="benefit-card" role="listitem">
+                  <h4 class="card-title">A balanced message</h4>
+                  <p>The workshop avoids both hype and fear. Students learn that AI is powerful, imperfect, and best used with judgement.</p>
+                </article>
+                <article class="benefit-card" role="listitem">
+                  <h4 class="card-title">Visible student output</h4>
+                  <p>Students leave with something they built and can explain, making the learning visible to staff, parents, and peers.</p>
+                </article>
+                <article class="benefit-card" role="listitem">
+                  <h4 class="card-title">A repeatable annual model</h4>
+                  <p>The workshop can run each year for new student cohorts, creating a practical AI fluency touchpoint across the calendar.</p>
+                </article>
+                <article class="benefit-card" role="listitem">
+                  <h4 class="card-title">A timely offer for ambitious families</h4>
+                  <p>Parents are increasingly asking what skills students will need next. This gives schools and tuition centres a credible, practical answer.</p>
+                </article>
+                <article class="benefit-card" role="listitem">
+                  <h4 class="card-title">A programme that complements academic support</h4>
+                  <p>The focus is not replacing tutoring or teaching. It helps students use AI to learn, think, plan, research, and build more effectively.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="section-cta">
+              <a href="#contact" class="btn btn-primary">Enquire about a group workshop</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="private-section" id="private-sessions" aria-labelledby="private-heading">
+      <div class="container">
+        <p class="t-label fade-up">Parents &amp; Students</p>
+        <h2 class="t-heading fade-up" id="private-heading">Personalised AI fluency sessions for students.</h2>
+        <p class="t-body section-intro fade-up">
+          For parents who want their child to use AI as a learning and building partner, not a shortcut.
+        </p>
+        <p class="t-body section-subcopy fade-up">
+          Private sessions are designed around the individual student. Some need help using AI to revise more effectively. Some want to understand how to use AI without becoming dependent on it. Others want to build tools, explore ideas, or develop confidence with the technologies shaping the future.
+        </p>
+
+        <div class="private-layout">
+          <aside class="format-card" aria-labelledby="private-format-heading">
+            <h3 class="format-card-title" id="private-format-heading">Session format</h3>
+            <ul class="format-list">
+              <li>
+                <span class="format-term">Format</span>
+                <span class="format-value">1-to-1 personalised session</span>
+              </li>
+              <li>
+                <span class="format-term">Audience</span>
+                <span class="format-value">Students of different ages, tailored by maturity and need</span>
+              </li>
+              <li>
+                <span class="format-term">Delivery</span>
+                <span class="format-value">Online initially; in-person by arrangement</span>
+              </li>
+              <li>
+                <span class="format-term">Length</span>
+                <span class="format-value">90-120 minutes</span>
+              </li>
+              <li>
+                <span class="format-term">Focus</span>
+                <span class="format-value">AI for learning, thinking, responsible use, creativity, and building</span>
+              </li>
+              <li>
+                <span class="format-term">Outcome</span>
+                <span class="format-value">A personalised workflow, study approach, AI assistant, or project idea they can continue using</span>
+              </li>
+            </ul>
+          </aside>
+
+          <div class="fade-up">
+            <h3 class="private-cover-heading">What a private session can cover</h3>
+            <div class="private-grid fade-up-group" role="list">
+              <article class="private-card" role="listitem">
+                <h4 class="card-title">AI for studying and revision</h4>
+                <p>Using AI for active recall, explanations, practice questions, planning, feedback, and understanding difficult concepts.</p>
+              </article>
+              <article class="private-card" role="listitem">
+                <h4 class="card-title">AI for better thinking</h4>
+                <p>Learning how to ask better questions, challenge weak answers, check assumptions, and avoid simply accepting whatever AI says.</p>
+              </article>
+              <article class="private-card" role="listitem">
+                <h4 class="card-title">AI for building</h4>
+                <p>Creating a simple tool, assistant, workflow, or project linked to the student&rsquo;s interests, schoolwork, or personal goals.</p>
+              </article>
+              <article class="private-card" role="listitem">
+                <h4 class="card-title">Responsible AI habits</h4>
+                <p>Understanding where AI helps, where it fails, how to verify outputs, and how to use it without outsourcing their own effort.</p>
+              </article>
+              <article class="private-card" role="listitem">
+                <h4 class="card-title">Confidence and direction</h4>
+                <p>Helping the student see AI as something they can use with control and purpose, rather than something confusing or overwhelming.</p>
+              </article>
+            </div>
+
+            <div class="section-cta">
+              <a href="#contact" class="btn btn-primary">Enquire about a private session</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="enquiry-cta" aria-labelledby="enquiry-cta-heading">
+      <div class="container">
+        <p class="t-label fade-up">Enquire</p>
+        <h2 class="t-heading fade-up" id="enquiry-cta-heading">Bring AI fluency to your students.</h2>
+        <p class="enquiry-cta-copy fade-up">
+          Whether you are a school, tuition centre, or parent, we can help students develop practical AI capability in a structured, responsible way.
+        </p>
+        <div class="hero-ctas fade-up" style="justify-content:center; margin-bottom:0;">
+          <a href="#contact" class="btn btn-amber">Enquire about a group workshop</a>
+          <a href="#contact" class="btn btn-outline-light">Enquire about a private session</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <p class="t-label fade-up">Enquire</p>
+        <h2 class="t-heading fade-up" id="contact-heading">Enquire about a workshop or private session.</h2>
+        <p class="contact-sub fade-up">
+          Tell us a little about who you are enquiring for and what you are looking for. We&rsquo;ll respond within 24-48 hours.
+        </p>
+
+        <div class="contact-grid fade-up">
+          <div>
+            <form
+              class="contact-form"
+              id="contact-form"
+              action="https://formsubmit.co/arslan.manzoor57@gmail.com"
+              method="POST"
+              novalidate
+            >
+              <input type="hidden" name="_cc" value="arslan@arslaninstitute.com">
+              <input type="hidden" name="_subject" value="New Arslan Institute enquiry">
+              <input type="hidden" name="_template" value="table">
+              <input type="text" name="_honey" style="display:none">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Your name</label>
+                  <input class="form-input" type="text" id="name" name="name" placeholder="Jane Smith" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <label for="organisation-name">Organisation / school name / parent enquiry</label>
+                  <input class="form-input" type="text" id="organisation-name" name="organisation_name" placeholder="Example Sixth Form or Parent enquiry" required autocomplete="organization">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="role">Your role</label>
+                  <input class="form-input" type="text" id="role" name="role" placeholder="Head of Sixth Form, Centre Director, Parent" required autocomplete="organization-title">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input class="form-input" type="email" id="email" name="email" placeholder="jane@example.com" required autocomplete="email">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="student-count">Approximate number of students</label>
+                  <input class="form-input" type="text" id="student-count" name="student_count" placeholder="e.g. 18 students" required>
+                </div>
+                <div class="form-group">
+                  <label for="enquiry-type">Enquiry type</label>
+                  <select class="form-select" id="enquiry-type" name="enquiry_type" required>
+                    <option value="">Select enquiry type</option>
+                    <option value="School workshop">School workshop</option>
+                    <option value="Tuition centre workshop">Tuition centre workshop</option>
+                    <option value="Private student session">Private student session</option>
+                    <option value="General enquiry">General enquiry</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="timing">Preferred timing / dates <span style="opacity:0.5;">(optional)</span></label>
+                <input class="form-input" type="text" id="timing" name="timing" placeholder="Autumn term or specific dates">
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                  class="form-textarea"
+                  id="message"
+                  name="message"
+                  placeholder="Tell us whether you are enquiring as a school, tuition centre, or parent, and what kind of support you are looking for."
+                  required
+                ></textarea>
+              </div>
+
+              <p class="form-privacy">
+                We&rsquo;ll only use these details to respond to your enquiry.
+              </p>
+
+              <button type="submit" class="btn btn-amber form-submit">Send enquiry</button>
+            </form>
+
+            <div class="form-success" id="form-success" role="status" aria-live="polite">
+              <p>Thank you. Your enquiry has been sent and we&rsquo;ll be in touch within 24-48 hours.</p>
+            </div>
+          </div>
+
+          <div class="contact-alt fade-up">
+            <p class="contact-alt-label">
+              Prefer to message directly? You can reach us on WhatsApp for an initial conversation.
+            </p>
+
+            <a
+              href="https://wa.me/447404420835?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20Arslan%20Institute."
+              class="btn-whatsapp-lg"
+              target="_blank"
+              rel="noopener"
+              aria-label="Message Arslan Institute on WhatsApp"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Message us on WhatsApp
+            </a>
+
+            <p class="whatsapp-note">
+              Share whether you are enquiring as a school, tuition centre, or parent, and we&rsquo;ll point you in the right direction.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-wordmark">Arslan Institute</span>
+        <div class="footer-right">
+          <p class="footer-contact"><a href="mailto:arslan@arslaninstitute.com">arslan@arslaninstitute.com</a></p>
+          <div class="footer-links">
+            <a href="#why-this-matters">Why it matters</a>
+            <a href="#outcomes">Outcomes</a>
+            <a href="#pathways">Pathways</a>
+            <a href="#group-workshop">Group workshop</a>
+            <a href="#private-sessions">Private sessions</a>
+            <a href="privacy-policy.html">Privacy policy</a>
+          </div>
+          <p class="footer-legal">Arslan Institute is operated by Arslan Manzoor, trading as Arslan Institute, based in London. &copy; 2026 Arslan Institute.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      function update() {
+        nav.classList.toggle('scrolled', window.scrollY > 24);
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+
+    (function () {
+      var targets = document.querySelectorAll('.fade-up, .fade-up-group');
+      if (!('IntersectionObserver' in window)) {
+        targets.forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      targets.forEach(function (el) { observer.observe(el); });
+    })();
+
+    (function () {
+      var videoCards = document.querySelectorAll('[data-video-url]');
+      videoCards.forEach(function (card) {
+        var url = card.getAttribute('data-video-url');
+        if (!url) return;
+
+        var target = card.querySelector('.video-embed-target');
+        if (!target) return;
+
+        var iframe = document.createElement('iframe');
+        iframe.src = url;
+        iframe.title = card.getAttribute('data-video-title') || 'Video';
+        iframe.loading = 'lazy';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+
+        target.innerHTML = '';
+        target.appendChild(iframe);
+      });
+    })();
+
+    (function () {
+      var form = document.getElementById('contact-form');
+      var success = document.getElementById('form-success');
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var formData = new FormData(form);
+        var endpoint = 'https://formsubmit.co/ajax/arslan.manzoor57@gmail.com';
+
+        fetch(endpoint, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        }).then(function (res) {
+          if (!res.ok) throw new Error('Submission failed');
+          return res.json();
+        }).then(function () {
+          form.style.display = 'none';
+          success.classList.add('visible');
+        }).catch(function () {
+          alert('There was a problem sending the enquiry. Please try WhatsApp or email directly at arslan@arslaninstitute.com or arslan.manzoor57@gmail.com.');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

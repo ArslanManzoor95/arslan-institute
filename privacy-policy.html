@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | Arslan Institute</title>
+  <meta name="description" content="Arslan Institute privacy policy. How we collect, use, and protect your personal data.">
+  <meta name="robots" content="noindex">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:           #f8f5ef;
+      --navy:         #1b2a3b;
+      --amber:        #bf8c52;
+      --text:         #2e3d4f;
+      --text-muted:   #6b7c8e;
+      --border:       #e3dbd0;
+      --card:         #ffffff;
+      --rule:         #d5cdc2;
+      --font-serif:  'Fraunces', Georgia, serif;
+      --font-sans:   'Inter', system-ui, sans-serif;
+      --radius:      6px;
+      --max-width:   1120px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--amber); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { color: var(--navy); }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 18px 0;
+      background-color: rgba(248,245,239,0.96);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-wordmark {
+      font-family: var(--font-serif);
+      font-size: 1.375rem;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+    }
+    .nav-wordmark:hover { color: var(--amber); }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+    .back-link:hover { color: var(--navy); }
+
+    /* Page */
+    .page { padding: 72px 0 96px; }
+    .page-inner { max-width: 720px; }
+
+    .page-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 20px;
+    }
+    .page-title {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .page-updated {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 56px;
+    }
+
+    /* Policy content */
+    .policy-section { margin-bottom: 48px; }
+    .policy-section h2 {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 1.375rem;
+      color: var(--navy);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .policy-section p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .policy-section p:last-child { margin-bottom: 0; }
+    .policy-section ul {
+      margin: 12px 0 14px 0;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .policy-section li {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+
+    .rights-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .right-item {
+      padding: 20px 20px;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .right-item strong {
+      display: block;
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 0.9375rem;
+      margin-bottom: 6px;
+    }
+    .right-item p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Footer */
+    .footer { padding: 32px 0; border-top: 1px solid var(--border); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-wordmark { font-family: var(--font-serif); font-size: 1.125rem; font-weight: 500; color: var(--navy); }
+    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .footer-links { display: flex; align-items: center; gap: 24px; }
+    .footer-links a { font-size: 0.875rem; color: var(--text-muted); text-underline-offset: 3px; transition: color 150ms ease; }
+    .footer-links a:hover { color: var(--navy); }
+    .footer-legal { font-size: 0.8125rem; color: var(--text-muted); opacity: 0.7; }
+
+    @media (max-width: 768px) {
+      .rights-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-right { align-items: flex-start; }
+    }
+    @media (max-width: 480px) { .container { padding: 0 20px; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <div class="nav-inner">
+          <a href="index.html" class="nav-wordmark" aria-label="Arslan Institute home">Arslan Institute</a>
+          <a href="index.html" class="back-link" aria-label="Back to homepage">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M11.5 7h-9M6 3.5L2.5 7 6 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back to home
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page">
+      <div class="container">
+        <div class="page-inner">
+
+          <p class="page-label">Legal</p>
+          <h1 class="page-title">Privacy Policy</h1>
+          <p class="page-updated">Last updated: May 2026</p>
+
+          <!-- =====================================================
+               SECTION 1: Who we are
+               ===================================================== -->
+          <div class="policy-section">
+            <h2>Who we are</h2>
+            <p>
+              Arslan Institute is operated by Arslan Manzoor, trading as Arslan Institute, a sole trader based in
+              London, England. We provide 1-to-1 AI building sessions for teenagers.
+            </p>
+            <p>
+              For the purposes of UK data protection law, Arslan Manzoor is the data controller
+              responsible for your personal data. If you have any questions about this policy or how we
+              handle your data, you can contact us at
+              <a href="mailto:hello@thinkcraft.co.uk">hello@thinkcraft.co.uk</a>.
+            </p>
+          </div>
+
+          <!-- =====================================================
+               SECTION 2: What data we collect
+               ===================================================== -->
+          <div class="policy-section">
+            <h2>What data we collect and why</h2>
+            <p>
+              We only collect personal data that you provide to us directly through the contact form
+              on our website. This may include:
+            </p>
+            <ul>
+              <li>Your name</li>
+              <li>Your email address</li>
+              <li>Your teenager's age (if you choose to provide it)</li>
+              <li>The content of your message</li>
+            </ul>
+            <p>
+              We collect this information solely to respond to your enquiry about our sessions.
+              We do not use it for any other purpose.
+            </p>
+            <p>
+              We do not use cookies, tracking pixels, or analytics tools on this website. We do not
+              build profiles of visitors or use any form of behavioural advertising.
+            </p>
+          </div>
+
+          <!-- =====================================================
+               SECTION 3: Legal basis
+               ===================================================== -->
+          <div class="policy-section">
+            <h2>Legal basis for processing</h2>
+            <p>
+              We process your personal data on the basis of legitimate interests. Specifically, it is
+              in both your interest and ours to communicate about the enquiry you have made. We have
+              considered whether our interests are overridden by your rights and concluded they are not,
+              given that the data is minimal, used only for the purpose you provided it, and not shared
+              with third parties.
+            </p>
+          </div>
+
+          <!-- =====================================================
+               SECTION 4: How long we keep data
+               ===================================================== -->
+          <div class="policy-section">
+            <h2>How long we keep your data</h2>
+            <p>
+              If your enquiry does not result in a booking, we will delete your contact details within
+              12 months of our last communication. If you become a client, we will retain records
+              related to your sessions for as long as reasonably necessary for business and legal
+              purposes, and no longer than 3 years after our last interaction.
+            </p>
+            <p>
+              You can ask us to delete your data at any time. See the Your Rights section below.
+            </p>
+          </div>
+
+          <!-- =====================================================
+               SECTION 5: Who we share data with
+               ===================================================== -->
+          <div class="policy-section">
+            <h2>Who we share your data with</h2>
+            <p>
+              We do not sell, rent, or share your personal data with any third parties for marketing
+              or commercial purposes.
+            </p>
+            <p>
+              Our contact form is processed by Formspree, Inc., a third-party form processing service.
+              Formspree receives the content of any form submission you make and transmits it to us by
+              email. They act as a data processor on our behalf. You can read Formspree's privacy
+              policy at <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">formspree.io</a>.
+            </p>
+            <p>
+              If you contact us via WhatsApp, your message is handled in accordance with Meta's
+              privacy policy and WhatsApp's terms of service.
+            </p>
+          </div>
+
+          <!-- =====================================================
+               SECTION 6: Children's data
+               ===================================================== -->
+          <div class="policy-section">
+            <h2>Children's data</h2>
+            <p>
+              Our sessions are for teenagers aged 13 to 19. We ask that all enquiries and bookings are
+              made by a parent or guardian, not by the teenager directly. We do not knowingly collect
+              personal data directly from anyone under the age of 13.
+            </p>
+            <p>
+              During sessions, we do not ask teenagers to create accounts or submit personal information
+              to any service unless strictly necessary for the build, and we obtain verbal consent from
+              the parent or guardian present before doing so.
+            </p>
+          </div>
+
+          <!-- =====================================================
+               SECTION 7: Your rights
+               ===================================================== -->
+          <div class="policy-section">
+            <h2>Your rights</h2>
+            <p>
+              Under UK data protection law (UK GDPR), you have the following rights regarding your
+              personal data:
+            </p>
+            <div class="rights-grid">
+              <div class="right-item">
+                <strong>Access</strong>
+                <p>You can request a copy of the personal data we hold about you.</p>
+              </div>
+              <div class="right-item">
+                <strong>Rectification</strong>
+                <p>You can ask us to correct any inaccurate data we hold about you.</p>
+              </div>
+              <div class="right-item">
+                <strong>Erasure</strong>
+                <p>You can ask us to delete your personal data. We will comply unless we have a legal obligation to retain it.</p>
+              </div>
+              <div class="right-item">
+                <strong>Restriction</strong>
+                <p>You can ask us to restrict how we use your data while a dispute is being resolved.</p>
+              </div>
+              <div class="right-item">
+                <strong>Objection</strong>
+                <p>You can object to us processing your data on the basis of legitimate interests.</p>
+              </div>
+              <div class="right-item">
+                <strong>Portability</strong>
+                <p>You can request a machine-readable copy of the data you have provided to us.</p>
+              </div>
+            </div>
+            <p style="margin-top: 20px;">
+              To exercise any of these rights, please email
+              <a href="mailto:hello@thinkcraft.co.uk">hello@thinkcraft.co.uk</a>. We will respond
+              within one month. There is no charge for exercising your rights.
+            </p>
+          </div>
+
+          <!-- =====================================================
+               SECTION 8: Complaints
+               ===================================================== -->
+          <div class="policy-section">
+            <h2>How to make a complaint</h2>
+            <p>
+              If you are unhappy with how we have handled your personal data, please contact us first
+              at <a href="mailto:hello@thinkcraft.co.uk">hello@thinkcraft.co.uk</a> and we will do
+              our best to resolve the matter.
+            </p>
+            <p>
+              You also have the right to lodge a complaint with the Information Commissioner's Office
+              (ICO), the UK supervisory authority for data protection matters, at
+              <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a> or by calling
+              0303 123 1113.
+            </p>
+          </div>
+
+          <!-- =====================================================
+               SECTION 9: Changes to this policy
+               ===================================================== -->
+          <div class="policy-section">
+            <h2>Changes to this policy</h2>
+            <p>
+              We may update this privacy policy from time to time. When we do, we will update the
+              "last updated" date at the top of this page. We encourage you to review this policy
+              periodically if you have an ongoing relationship with us.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-wordmark">Arslan Institute</span>
+        <div class="footer-right">
+          <div class="footer-links">
+            <a href="mailto:hello@thinkcraft.co.uk">hello@thinkcraft.co.uk</a>
+            <a href="index.html">Home</a>
+          </div>
+          <p class="footer-legal">Arslan Institute is operated by Arslan Manzoor, trading as Arslan Institute, based in London. &copy; 2026 Arslan Institute.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

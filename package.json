@@ -1,0 +1,11 @@
+{
+  "name": "arslan-institute",
+  "version": "1.0.0",
+  "description": "Arslan Institute website",
+  "scripts": {
+    "dev": "http-server -p 8000 -o"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
