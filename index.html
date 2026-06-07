@@ -365,7 +365,85 @@
     .theme-thumb .video-play-icon {
       width: 58px;
       height: 58px;
+      z-index: 2;
+      transition: transform 0.2s ease;
+      pointer-events: none;
     }
+    .theme-thumb video.theme-thumb-poster {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #000;
+      pointer-events: none;
+    }
+    .theme-thumb-button {
+      all: unset;
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      display: block;
+    }
+    .theme-thumb-button:focus-visible {
+      outline: 2px solid var(--gold, #bf8c52);
+      outline-offset: 2px;
+    }
+    .theme-thumb:hover .video-play-icon,
+    .theme-thumb-button:focus-visible + .video-play-icon {
+      transform: scale(1.08);
+    }
+    .theme-thumb:has(video.theme-thumb-poster)::after { content: none; }
+
+    .video-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 12, 20, 0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 1000;
+    }
+    .video-lightbox[aria-hidden="false"] { display: flex; }
+    .video-lightbox-inner {
+      position: relative;
+      width: min(92vw, calc(90vh * 16 / 9));
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+    }
+    .video-lightbox-inner video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: #000;
+    }
+    .video-lightbox-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(20, 28, 40, 0.75);
+      color: #fff;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      z-index: 2;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .video-lightbox-close:hover { background: rgba(35, 58, 82, 0.9); }
+    body.lightbox-open { overflow: hidden; }
     .theme-meta {
       display: flex;
       flex-direction: column;
@@ -683,7 +761,7 @@
     }
     .module-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 24px;
     }
     .module-card,
@@ -1097,17 +1175,20 @@
     <section class="intro-video" id="introduction" aria-labelledby="introduction-heading">
       <div class="container">
         <p class="t-label fade-up">Videos</p>
-        <h2 class="t-heading fade-up" id="introduction-heading">Two focused videos.</h2>
+        <h2 class="t-heading fade-up" id="introduction-heading">The core areas we teach.</h2>
         <p class="t-body section-intro fade-up">
-          Two focused videos covering the core areas we teach: using AI well for learning, and using AI well for building.
+          Using AI well for learning, and using AI well for building.
         </p>
 
         <div class="theme-block">
-          <h3 class="theme-heading fade-up">Explore the two focused videos</h3>
           <div class="theme-grid fade-up-group" role="list">
             <article class="theme-card" role="listitem">
-              <div class="theme-thumb" aria-hidden="true">
-                <span class="video-play-icon">
+              <div class="theme-thumb">
+                <video class="theme-thumb-poster" preload="metadata" muted playsinline aria-hidden="true">
+                  <source src="AI-for-learning.mp4#t=0.5" type="video/mp4">
+                </video>
+                <button type="button" class="theme-thumb-button" data-video-src="AI-for-learning.mp4" data-video-title="AI Skills for Learning" aria-label="Play video: AI Skills for Learning"></button>
+                <span class="video-play-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M8 5.5v13l10-6.5L8 5.5z"></path>
                   </svg>
@@ -1116,13 +1197,16 @@
               <div class="theme-meta">
                 <p class="theme-title">AI Skills for Learning</p>
                 <p class="theme-desc">How students can use AI for revision, active recall, feedback, explanation, and deeper understanding.</p>
-                <p class="theme-status">Coming soon</p>
               </div>
             </article>
 
             <article class="theme-card" role="listitem">
-              <div class="theme-thumb" aria-hidden="true">
-                <span class="video-play-icon">
+              <div class="theme-thumb">
+                <video class="theme-thumb-poster" preload="metadata" muted playsinline aria-hidden="true">
+                  <source src="AI-for-building.mp4#t=0.5" type="video/mp4">
+                </video>
+                <button type="button" class="theme-thumb-button" data-video-src="AI-for-building.mp4" data-video-title="AI Skills for Building" aria-label="Play video: AI Skills for Building"></button>
+                <span class="video-play-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M8 5.5v13l10-6.5L8 5.5z"></path>
                   </svg>
@@ -1130,8 +1214,7 @@
               </div>
               <div class="theme-meta">
                 <p class="theme-title">AI Skills for Building</p>
-                <p class="theme-desc">How students can create simple assistants, workflows, and prototypes rather than only consuming AI outputs.</p>
-                <p class="theme-status">Coming soon</p>
+                <p class="theme-desc">Students learn to design and build their own AI tools, from simple assistants and workflows through to full working products that solve real problems.</p>
               </div>
             </article>
           </div>
@@ -1167,7 +1250,7 @@
                 Academic achievement still matters, but future success will increasingly depend on something more: the ability to learn independently, think critically, communicate clearly, adapt quickly, and use powerful new technologies with judgement.
               </p>
               <p class="t-body">
-                The students who thrive will not be those who simply consume AI outputs. They will be those who can question them, improve them, and use them to create useful things in the real world.
+                The students who thrive will be those who can question AI outputs, improve them, and use them to create useful things in the real world.
               </p>
               <p class="t-body">
                 Our mission is to help students develop those skills before they leave education.
@@ -1191,7 +1274,7 @@
         <p class="t-label fade-up">Why this matters</p>
         <h2 class="t-heading fade-up" id="problem-heading">The question education leaders and parents are now facing.</h2>
         <p class="problem-intro fade-up">
-          Students are already using AI. The challenge is no longer whether they will use it, but whether they will learn to use it well.
+          Students are already using AI. What matters now is whether they will learn to use it well.
         </p>
 
         <ul class="problem-questions fade-up" role="list">
@@ -1212,7 +1295,7 @@
         <p class="t-label fade-up">Outcomes</p>
         <h2 class="t-heading fade-up" id="outcomes-heading">What students walk away with.</h2>
         <p class="t-body section-intro fade-up">
-          Not just AI awareness. Practical capability they can use immediately.
+          Practical capability students can use immediately.
         </p>
 
         <div class="outcomes-grid fade-up-group" role="list">
@@ -1224,7 +1307,7 @@
 
           <article class="outcome-item" role="listitem">
             <p class="outcome-number" aria-hidden="true">2</p>
-            <h3 class="outcome-title">The ability to think with AI, not outsource thinking to it</h3>
+            <h3 class="outcome-title">Using AI to sharpen their thinking</h3>
             <p class="outcome-desc">They practise briefing AI clearly, giving context, asking better questions, challenging weak answers, checking assumptions, and improving outputs through iteration.</p>
           </article>
 
@@ -1320,11 +1403,11 @@
               </li>
               <li>
                 <span class="format-term">Length</span>
-                <span class="format-value">Flexible &mdash; single module or full programme</span>
+                <span class="format-value">Single module or full programme</span>
               </li>
               <li>
                 <span class="format-term">Group size</span>
-                <span class="format-value">10-25 students ideal</span>
+                <span class="format-value">10-12 students ideal</span>
               </li>
               <li>
                 <span class="format-term">Audience</span>
@@ -1354,7 +1437,7 @@
                   <h3 class="card-title">AI for Learning</h3>
                 </div>
                 <p class="module-copy">Using AI to revise, recall, plan essays, and understand difficult material without becoming dependent on it. Students leave with a personal, repeatable way to study with AI.</p>
-                <p class="module-duration">A focused session &mdash; around 2 hours, adaptable to your timetable</p>
+                <p class="module-duration">A focused session of around 2 hours, adaptable to your timetable</p>
               </article>
 
               <article class="module-card" role="listitem">
@@ -1363,23 +1446,15 @@
                   <h3 class="card-title">AI for Building</h3>
                 </div>
                 <p class="module-copy">The hands-on build sprint. Students design and build a useful AI tool, assistant, or workflow tied to a real goal, and leave with something they made and can explain.</p>
-                <p class="module-duration">A focused session &mdash; around 2 hours, adaptable to your timetable</p>
+                <p class="module-duration">A focused session of around 2 hours, adaptable to your timetable</p>
               </article>
 
-              <article class="module-card" role="listitem">
-                <div>
-                  <p class="pathway-card-label">Module 3</p>
-                  <h3 class="card-title">Responsible AI &amp; Judgement</h3>
-                </div>
-                <p class="module-copy">Where AI genuinely helps, where it fails, how to verify outputs, and how to use it with judgement. Works well as a standalone careers, PSHE, or enrichment session.</p>
-                <p class="module-duration">A focused session &mdash; around 2 hours, adaptable to your timetable</p>
-              </article>
             </div>
 
             <article class="programme-card fade-up" aria-labelledby="full-programme-heading">
               <p class="pathway-card-label">Flagship format</p>
               <h3 class="card-title" id="full-programme-heading">The Full Programme</h3>
-              <p class="programme-copy">All three modules delivered across a full day &mdash; the complete experience. Students learn, build, and present, moving from AI awareness to responsible, hands-on capability. This is the definitive version of the workshop; individual modules are focused entry points into it.</p>
+              <p class="programme-copy">Both modules delivered across a full day, the complete experience. Students learn, build, and present, moving from AI awareness to responsible, hands-on capability. This is the definitive version of the workshop; individual modules are focused entry points into it.</p>
             </article>
 
             <p class="workshop-note">
@@ -1430,7 +1505,7 @@
         <p class="t-label fade-up">Parents &amp; Students</p>
         <h2 class="t-heading fade-up" id="private-heading">Personalised AI fluency sessions for students.</h2>
         <p class="t-body section-intro fade-up">
-          For parents who want their child to use AI as a learning and building partner, not a shortcut.
+          For parents who want their child to use AI as a genuine learning and building partner.
         </p>
         <p class="t-body section-subcopy fade-up">
           Private sessions are designed around the individual student. Some need help using AI to revise more effectively. Some want to understand how to use AI without becoming dependent on it. Others want to build tools, explore ideas, or develop confidence with the technologies shaping the future.
@@ -1630,6 +1705,13 @@
     </section>
   </main>
 
+  <div class="video-lightbox" id="video-lightbox" role="dialog" aria-modal="true" aria-label="Video player" aria-hidden="true">
+    <div class="video-lightbox-inner">
+      <button type="button" class="video-lightbox-close" id="video-lightbox-close" aria-label="Close video">&times;</button>
+      <video id="video-lightbox-video" controls playsinline preload="metadata"></video>
+    </div>
+  </div>
+
   <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="footer-inner">
@@ -1696,6 +1778,57 @@
 
         target.innerHTML = '';
         target.appendChild(iframe);
+      });
+    })();
+
+    (function () {
+      var lightbox = document.getElementById('video-lightbox');
+      var video = document.getElementById('video-lightbox-video');
+      var closeBtn = document.getElementById('video-lightbox-close');
+      if (!lightbox || !video || !closeBtn) return;
+
+      var lastTrigger = null;
+
+      function openLightbox(src, title, trigger) {
+        lastTrigger = trigger || null;
+        video.src = src;
+        if (title) video.setAttribute('title', title);
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('lightbox-open');
+        var playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(function () { /* autoplay blocked; user can press play */ });
+        }
+        closeBtn.focus();
+      }
+
+      function closeLightbox() {
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('lightbox-open');
+        if (lastTrigger && typeof lastTrigger.focus === 'function') {
+          lastTrigger.focus();
+        }
+      }
+
+      document.querySelectorAll('.theme-thumb-button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var src = btn.getAttribute('data-video-src');
+          var title = btn.getAttribute('data-video-title');
+          if (src) openLightbox(src, title, btn);
+        });
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.getAttribute('aria-hidden') === 'false') {
+          closeLightbox();
+        }
       });
     })();
 
