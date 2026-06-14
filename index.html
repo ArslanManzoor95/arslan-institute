@@ -113,7 +113,7 @@
       border-radius: var(--radius);
       cursor: pointer;
       border: 1.5px solid transparent;
-      transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+      transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
       white-space: nowrap;
       text-decoration: none;
     }
@@ -156,6 +156,15 @@
       border-color: rgba(255, 255, 255, 0.55);
     }
     .btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+    /* modern CTA micro-interactions: subtle lift + arrow nudge */
+    .btn-lift:hover, .btn-lift:focus-visible { transform: translateY(-2px); }
+    .btn-icon {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+      transition: transform 200ms ease;
+    }
+    .btn:hover .btn-icon, .btn:focus-visible .btn-icon { transform: translateX(3px); }
 
     .fade-up {
       opacity: 0;
@@ -502,48 +511,6 @@
       line-height: 1.5;
     }
 
-    .problem {
-      background-color: var(--navy);
-      padding: var(--section-gap) 0;
-    }
-    .problem .t-label { color: var(--amber); }
-    .problem .t-heading {
-      color: #fff;
-      margin-top: 16px;
-      margin-bottom: 20px;
-      max-width: 760px;
-    }
-    .problem-intro {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 1rem;
-      line-height: 1.7;
-      max-width: 760px;
-      margin-bottom: 34px;
-    }
-    .problem-questions {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      max-width: 840px;
-      margin-bottom: 34px;
-    }
-    .problem-questions li {
-      padding: 22px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      font-family: var(--font-serif);
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      font-weight: 300;
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.88);
-    }
-    .problem-questions li:first-child { border-top: 1px solid rgba(255, 255, 255, 0.1); }
-    .problem-response {
-      color: rgba(255, 255, 255, 0.65);
-      font-size: 1rem;
-      line-height: 1.7;
-      max-width: 620px;
-    }
 
     .outcomes { padding: var(--section-gap) 0; }
     .outcomes .t-heading { margin-top: 16px; }
@@ -1129,6 +1096,201 @@
         font-size: 0.8125rem;
       }
     }
+
+    /* ---------- Persona switcher ---------- */
+    .programmes {
+      padding: 96px 0 var(--section-gap);
+      background-color: #fbf8f2;
+      border-top: 1px solid var(--border);
+      scroll-margin-top: 80px;
+    }
+    .programmes-head { text-align: center; }
+    .programmes-head .t-label { display: block; }
+    .programmes-head .t-heading {
+      margin-top: 14px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .switcher {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-top: 34px;
+    }
+    .persona-switch {
+      display: inline-flex;
+      gap: 4px;
+      padding: 6px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      box-shadow: 0 8px 26px rgba(27, 42, 59, 0.07);
+      max-width: 100%;
+    }
+    .persona-pill {
+      appearance: none;
+      -webkit-appearance: none;
+      border: none;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: 12px 26px;
+      border-radius: 999px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 240ms ease, color 240ms ease, box-shadow 240ms ease;
+    }
+    .persona-pill:hover { color: var(--navy); }
+    .persona-pill:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+    .persona-pill[aria-selected="true"] {
+      background-color: var(--navy);
+      color: #fff;
+      box-shadow: 0 3px 12px rgba(27, 42, 59, 0.24);
+    }
+    .subswitch {
+      display: none;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 240ms ease, transform 240ms ease;
+    }
+    .subswitch.is-shown { display: inline-flex; }
+    .subswitch.is-shown.is-visible { opacity: 1; transform: translateY(0); }
+    .subswitch-inner {
+      display: inline-flex;
+      gap: 4px;
+      padding: 5px;
+      background: #f1e8da;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+    }
+    .subpill {
+      appearance: none;
+      -webkit-appearance: none;
+      border: none;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--amber-dark);
+      padding: 9px 22px;
+      border-radius: 999px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 220ms ease, color 220ms ease, box-shadow 220ms ease;
+    }
+    .subpill:hover { color: var(--navy); }
+    .subpill:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+    .subpill[aria-selected="true"] {
+      background-color: var(--amber);
+      color: #fff;
+      box-shadow: 0 3px 12px rgba(191, 140, 82, 0.3);
+    }
+
+    .persona-views { position: relative; margin-top: 56px; }
+    .view { display: none; }
+    .view.is-active { display: block; animation: viewIn 380ms cubic-bezier(0.22, 0.61, 0.36, 1); }
+    @keyframes viewIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .view-hero {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 56px;
+    }
+    .view-hero-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 24px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(150deg, #fff 0%, #f4ece0 100%);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 28px rgba(27, 42, 59, 0.08);
+    }
+    .view-hero-icon svg { width: 34px; height: 34px; stroke: var(--amber); fill: none; }
+    .view-hero .t-heading .keyword { color: var(--amber); }
+    .view-hero-sub {
+      margin-top: 18px;
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+    .view-section { margin-top: 64px; }
+    .view-section:first-of-type { margin-top: 0; }
+    .view-section-head { margin-bottom: 32px; }
+    .view-section-head .t-heading { margin-top: 12px; }
+    .view-section-head .t-body { margin-top: 14px; max-width: 760px; }
+    .view-cta {
+      margin-top: 44px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+    .single-video { max-width: 760px; margin: 0 auto; }
+
+    .outcome-block + .outcome-block { margin-top: 0; }
+    .outcome-block-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .outcome-block-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 999px;
+      line-height: 1;
+    }
+    .outcome-block-tag.tag-amber { background-color: var(--amber); }
+    .outcome-block-tag.tag-navy { background-color: var(--navy); }
+    .outcome-divider { margin: 56px 0; border-top-color: var(--rule); }
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+    @media (max-width: 1024px) { .formats-grid { grid-template-columns: 1fr; } }
+    .form-institutional { display: flex; flex-direction: column; gap: 20px; }
+    .form-institutional[hidden] { display: none; }
+    .form-institutional-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin: 0; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .view.is-active { animation: none; }
+      .subswitch { transition: none; }
+    }
+
+    @media (max-width: 600px) {
+      .programmes { padding: 72px 0 var(--section-gap); }
+      .switcher { width: 100%; }
+      .persona-switch {
+        flex-direction: column;
+        width: 100%;
+        max-width: 360px;
+        gap: 4px;
+        border-radius: 18px;
+      }
+      .persona-pill { width: 100%; padding: 13px 18px; font-size: 0.9375rem; }
+      .subswitch-inner { width: 100%; max-width: 360px; }
+      .subpill { flex: 1 1 0; padding: 10px 12px; font-size: 0.8125rem; }
+    }
   </style>
 </head>
 <body>
@@ -1138,11 +1300,12 @@
         <div class="nav-inner">
           <a href="index.html" class="nav-wordmark" aria-label="Arslan Institute home">Arslan Institute</a>
           <div class="nav-links" aria-label="Site sections">
-            <a href="#outcomes" class="nav-link">Outcomes</a>
-            <a href="#group-workshop" class="nav-link">Group workshop</a>
-            <a href="#private-sessions" class="nav-link">Private sessions</a>
+            <a href="#programmes" class="nav-link" data-persona-link="teachers">For teachers</a>
+            <a href="#programmes" class="nav-link" data-persona-link="parents">For parents</a>
+            <a href="#programmes" class="nav-link" data-persona-link="uni">For university</a>
+            <a href="#about" class="nav-link">About</a>
           </div>
-          <a href="#contact" class="btn btn-primary nav-cta">Enquire</a>
+          <a href="#contact" class="btn btn-primary btn-lift nav-cta">Enquire</a>
         </div>
       </div>
     </nav>
@@ -1160,64 +1323,524 @@
             Practical AI fluency workshops and personalised sessions that help students learn independently, think clearly, use AI responsibly, and build useful things with it.
           </p>
           <div class="hero-ctas fade-up">
-            <a href="#group-workshop" class="btn btn-primary">Explore school &amp; tuition workshops</a>
-            <a href="#private-sessions" class="btn btn-secondary">Explore private sessions</a>
+            <a href="#contact" class="btn btn-amber btn-lift">Enquire now <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+            <a href="#programmes" class="btn btn-secondary btn-lift">Explore programmes</a>
           </div>
-          <p class="hero-note fade-up">
-            For schools, sixth forms, tuition centres, parents, and students.
-          </p>
+          <p class="hero-note fade-up">Workshops for schools and sixth forms &middot; personalised 1-to-1 sessions for families.</p>
         </div>
       </div>
     </section>
 
     <hr class="divider">
 
-    <section class="intro-video" id="introduction" aria-labelledby="introduction-heading">
+    <section class="programmes" id="programmes" aria-labelledby="programmes-heading">
       <div class="container">
-        <p class="t-label fade-up">Videos</p>
-        <h2 class="t-heading fade-up" id="introduction-heading">The core areas we teach.</h2>
-        <p class="t-body section-intro fade-up">
-          Using AI well for learning, and using AI well for building.
-        </p>
+        <div class="programmes-head">
+          <p class="t-label fade-up">Who it's for</p>
+          <h2 class="t-heading fade-up" id="programmes-heading">Choose your path into AI fluency.</h2>
+        </div>
 
-        <div class="theme-block">
-          <div class="theme-grid fade-up-group" role="list">
-            <article class="theme-card" role="listitem">
-              <div class="theme-thumb">
-                <video class="theme-thumb-poster" preload="metadata" muted playsinline aria-hidden="true">
-                  <source src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/AI-for-learning.mp4#t=0.5" type="video/mp4">
-                </video>
-                <button type="button" class="theme-thumb-button" data-video-src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/AI-for-learning.mp4" data-video-title="AI Skills for Learning" aria-label="Play video: AI Skills for Learning"></button>
-                <span class="video-play-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M8 5.5v13l10-6.5L8 5.5z"></path>
-                  </svg>
-                </span>
-              </div>
-              <div class="theme-meta">
-                <p class="theme-title">AI Skills for Learning</p>
-                <p class="theme-desc">How students can use AI for revision, active recall, feedback, explanation, and deeper understanding.</p>
-              </div>
-            </article>
-
-            <article class="theme-card" role="listitem">
-              <div class="theme-thumb">
-                <video class="theme-thumb-poster" preload="metadata" muted playsinline aria-hidden="true">
-                  <source src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/AI-for-building.mp4#t=0.5" type="video/mp4">
-                </video>
-                <button type="button" class="theme-thumb-button" data-video-src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/AI-for-building.mp4" data-video-title="AI Skills for Building" aria-label="Play video: AI Skills for Building"></button>
-                <span class="video-play-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M8 5.5v13l10-6.5L8 5.5z"></path>
-                  </svg>
-                </span>
-              </div>
-              <div class="theme-meta">
-                <p class="theme-title">AI Skills for Building</p>
-                <p class="theme-desc">Students learn to design and build their own AI tools, from simple assistants and workflows through to full working products that solve real problems.</p>
-              </div>
-            </article>
+        <div class="switcher fade-up">
+          <div class="persona-switch" role="tablist" aria-label="Choose who this is for">
+            <button type="button" class="persona-pill" role="tab" id="tab-teachers" data-persona="teachers" aria-selected="true" aria-controls="view-teachers-student">For Teachers</button>
+            <button type="button" class="persona-pill" role="tab" id="tab-parents" data-persona="parents" aria-selected="false" aria-controls="view-parents">For Parents</button>
+            <button type="button" class="persona-pill" role="tab" id="tab-uni" data-persona="uni" aria-selected="false" aria-controls="view-uni">For University Students</button>
           </div>
+
+          <div class="subswitch" id="teacher-subswitch">
+            <div class="subswitch-inner" role="tablist" aria-label="Choose the focus for teachers">
+              <button type="button" class="subpill" role="tab" id="subtab-student" data-teacher-mode="student" aria-selected="true" aria-controls="view-teachers-student">Teach the Student</button>
+              <button type="button" class="subpill" role="tab" id="subtab-teacher" data-teacher-mode="teacher" aria-selected="false" aria-controls="view-teachers-teacher">Teach the Teacher</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="persona-views">
+
+          <!-- ============ VIEW: Teachers / Teach the Student ============ -->
+          <div class="view is-active" id="view-teachers-student" role="tabpanel" aria-labelledby="subtab-student" data-view="teachers-student">
+            <div class="view-hero">
+              <div class="view-hero-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18"/><path d="M4 4v9h16V4"/><path d="M12 13v4"/><path d="M9 21l3-4 3 4"/></svg>
+              </div>
+              <h3 class="t-heading">Bring AI fluency to your <span class="keyword">students</span>.</h3>
+              <p class="view-hero-sub">A practical, hands-on workshop for schools, sixth forms, and tuition centres, moving student groups beyond basic AI awareness into responsible, useful, hands-on capability.</p>
+            </div>
+
+            <div class="view-section">
+              <div class="view-section-head">
+                <p class="t-label">What we teach</p>
+                <h4 class="t-heading">The two core areas students master.</h4>
+                <p class="t-body">Two skills for two stages. Using AI to learn more effectively today, and learning to build with it for what comes next.</p>
+              </div>
+              <div class="theme-grid" role="list">
+                <article class="theme-card" role="listitem">
+                  <div class="theme-thumb">
+                    <video class="theme-thumb-poster" preload="metadata" muted playsinline aria-hidden="true">
+                      <source src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/AI-for-learning.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <button type="button" class="theme-thumb-button" data-video-src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/AI-for-learning.mp4" data-video-title="AI Skills for Learning" aria-label="Play video: AI Skills for Learning"></button>
+                    <span class="video-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5L8 5.5z"></path></svg></span>
+                  </div>
+                  <div class="theme-meta">
+                    <p class="t-label">For your studies now</p>
+                    <p class="theme-title">AI Skills for Learning</p>
+                    <p class="theme-desc">Using AI to get more from your studies today: revision, active recall, feedback, and a genuinely deeper understanding of the material, rather than shortcuts.</p>
+                  </div>
+                </article>
+                <article class="theme-card" role="listitem">
+                  <div class="theme-thumb">
+                    <video class="theme-thumb-poster" preload="metadata" muted playsinline aria-hidden="true">
+                      <source src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/AI-for-building.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <button type="button" class="theme-thumb-button" data-video-src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/AI-for-building.mp4" data-video-title="AI Skills for Building" aria-label="Play video: AI Skills for Building"></button>
+                    <span class="video-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5L8 5.5z"></path></svg></span>
+                  </div>
+                  <div class="theme-meta">
+                    <p class="t-label">For university and beyond</p>
+                    <p class="theme-title">AI Skills for Building</p>
+                    <p class="theme-desc">Developing the capability universities and employers increasingly reward: designing and building your own AI tools, from simple assistants to full working products that solve real problems.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="view-section">
+              <div class="view-section-head">
+                <p class="t-label">Outcomes &amp; benefits</p>
+                <h4 class="t-heading">What everyone walks away with.</h4>
+                <p class="t-body">Real, immediate capability for students, and clear, lasting value for your school or tuition centre.</p>
+              </div>
+
+              <div class="outcome-block">
+                <h5 class="outcome-block-title"><span class="outcome-block-tag tag-amber">For students</span> What students walk away with</h5>
+                <div class="outcomes-grid" role="list">
+                  <article class="outcome-item" role="listitem">
+                    <p class="outcome-number" aria-hidden="true">1</p>
+                    <h3 class="outcome-title">A smarter way to learn</h3>
+                    <p class="outcome-desc">Students learn how to use AI for revision, active recall, explanation, essay planning, feedback, and independent study without becoming dependent on it.</p>
+                  </article>
+                  <article class="outcome-item" role="listitem">
+                    <p class="outcome-number" aria-hidden="true">2</p>
+                    <h3 class="outcome-title">Using AI to sharpen their thinking</h3>
+                    <p class="outcome-desc">They practise briefing AI clearly, giving context, asking better questions, challenging weak answers, checking assumptions, and improving outputs through iteration.</p>
+                  </article>
+                  <article class="outcome-item" role="listitem">
+                    <p class="outcome-number" aria-hidden="true">3</p>
+                    <h3 class="outcome-title">The confidence to build powerful AI tools of their own</h3>
+                    <p class="outcome-desc">Students create an assistant, workflow, custom GPT-style tool, or prototype using modern AI systems, linked to a real academic, creative, or practical use case they can develop further after the workshop.</p>
+                  </article>
+                  <article class="outcome-item" role="listitem">
+                    <p class="outcome-number" aria-hidden="true">4</p>
+                    <h3 class="outcome-title">Responsible AI judgement</h3>
+                    <p class="outcome-desc">They learn where AI is useful, where it fails, how hallucinations happen, why verification matters, and how to use AI ethically in an academic environment.</p>
+                  </article>
+                  <article class="outcome-item" role="listitem">
+                    <p class="outcome-number" aria-hidden="true">5</p>
+                    <h3 class="outcome-title">Creative problem-solving confidence</h3>
+                    <p class="outcome-desc">The workshop helps students move from passive users to active builders: spotting problems, designing solutions, testing ideas, and improving them.</p>
+                  </article>
+                  <article class="outcome-item" role="listitem">
+                    <p class="outcome-number" aria-hidden="true">6</p>
+                    <h3 class="outcome-title">Debate, discussion, and presentation confidence</h3>
+                    <p class="outcome-desc">Students take part in detailed discussion about the benefits, limits, risks, and practical implications of AI use, challenge one another&rsquo;s thinking, and explain what they built with clarity, confidence, and ownership.</p>
+                  </article>
+                </div>
+              </div>
+
+              <hr class="divider outcome-divider">
+
+              <div class="outcome-block">
+                <h5 class="outcome-block-title"><span class="outcome-block-tag tag-navy">For your institution</span> What schools &amp; tuition centres gain</h5>
+                <div class="benefits-grid" role="list">
+                  <article class="benefit-card" role="listitem"><h4 class="card-title">A credible AI fluency programme</h4><p>Give students practical exposure to AI without needing to design an internal programme from scratch.</p></article>
+                  <article class="benefit-card" role="listitem"><h4 class="card-title">A balanced message</h4><p>The workshop avoids both hype and fear. Students learn that AI is powerful, imperfect, and best used with judgement.</p></article>
+                  <article class="benefit-card" role="listitem"><h4 class="card-title">Visible student output</h4><p>Students leave with something they built and can explain, making the learning visible to staff, parents, and peers.</p></article>
+                  <article class="benefit-card" role="listitem"><h4 class="card-title">A repeatable annual model</h4><p>The workshop can run each year for new student cohorts, creating a practical AI fluency touchpoint across the calendar.</p></article>
+                  <article class="benefit-card" role="listitem"><h4 class="card-title">A timely offer for ambitious families</h4><p>Parents are increasingly asking what skills students will need next. This gives schools and tuition centres a credible, practical answer.</p></article>
+                  <article class="benefit-card" role="listitem"><h4 class="card-title">A programme that complements academic support</h4><p>The focus is not replacing tutoring or teaching. It helps students use AI to learn, think, plan, research, and build more effectively.</p></article>
+                </div>
+              </div>
+            </div>
+
+            <div class="view-section">
+              <div class="view-section-head">
+                <p class="t-label">Schools &amp; tuition centres</p>
+                <h4 class="t-heading">Full-day AI fluency workshops for student groups.</h4>
+                <p class="t-body">The same core workshop can be delivered in schools, sixth forms, and tuition centre settings. It is designed primarily for sixth form students, with adaptations available by exception depending on age, ability, and context.</p>
+              </div>
+              <div class="workshop-layout">
+                <aside class="format-card" aria-labelledby="format-heading">
+                  <h3 class="format-card-title" id="format-heading">Workshop format</h3>
+                  <ul class="format-list">
+                    <li><span class="format-term">Format</span><span class="format-value">In-person group workshop</span></li>
+                    <li><span class="format-term">Length</span><span class="format-value">Single module or full programme</span></li>
+                    <li><span class="format-term">Group size</span><span class="format-value">10-12 students ideal</span></li>
+                    <li><span class="format-term">Audience</span><span class="format-value">Sixth form students primarily</span></li>
+                    <li><span class="format-term">Best fit</span><span class="format-value">Academically engaged, digitally curious students</span></li>
+                    <li><span class="format-term">Availability</span><span class="format-value">Online or shorter formats by arrangement</span></li>
+                  </ul>
+                </aside>
+                <div>
+                  <h3 class="workshop-flex-heading">Flexible formats</h3>
+                  <p class="workshop-flex-intro">Delivered as a single focused module or as the full programme, depending on your timetable, priorities, and group. The full programme is the complete experience; modules are a way to start.</p>
+                  <div class="module-grid" role="list" aria-label="Flexible workshop formats">
+                    <article class="module-card" role="listitem">
+                      <div><p class="pathway-card-label">Module 1</p><h3 class="card-title">AI for Learning</h3></div>
+                      <p class="module-copy">Using AI to revise, recall, plan essays, and understand difficult material without becoming dependent on it. Students leave with a personal, repeatable way to study with AI.</p>
+                      <p class="module-duration">A focused session of around 2 hours, adaptable to your timetable</p>
+                    </article>
+                    <article class="module-card" role="listitem">
+                      <div><p class="pathway-card-label">Module 2</p><h3 class="card-title">AI for Building</h3></div>
+                      <p class="module-copy">The hands-on build sprint. Students design and build a useful AI tool, assistant, or workflow tied to a real goal, and leave with something they made and can explain.</p>
+                      <p class="module-duration">A focused session of around 2 hours, adaptable to your timetable</p>
+                    </article>
+                  </div>
+                  <article class="programme-card" aria-labelledby="full-programme-heading">
+                    <p class="pathway-card-label">Flagship format</p>
+                    <h3 class="card-title" id="full-programme-heading">The Full Programme</h3>
+                    <p class="programme-copy">Both modules delivered across a full day, the complete experience. Students learn, build, and present, moving from AI awareness to responsible, hands-on capability. This is the definitive version of the workshop; individual modules are focused entry points into it.</p>
+                  </article>
+                  <p class="workshop-note">The workshop can be adapted for school priorities, student ability, available time, safeguarding requirements, and AI policy requirements.</p>
+                </div>
+              </div>
+              <div class="view-cta">
+                <a href="#contact" class="btn btn-amber btn-lift">Enquire about a group workshop <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ VIEW: Teachers / Teach the Teacher ============ -->
+          <div class="view" id="view-teachers-teacher" role="tabpanel" aria-labelledby="subtab-teacher" data-view="teachers-teacher" hidden>
+            <div class="view-hero">
+              <div class="view-hero-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10c.7.7 1 1.3 1 2h6c0-.7.3-1.3 1-2a6 6 0 0 0-4-10z"/></svg>
+              </div>
+              <h3 class="t-heading">AI fluency for <span class="keyword">educators</span> themselves.</h3>
+              <p class="view-hero-sub">Professional development that helps teachers use AI with confidence, in their own planning, resources, and feedback, and in how they guide students through an AI-shaped classroom.</p>
+            </div>
+
+            <div class="view-section">
+              <div class="single-video">
+                <div class="video-feature-card">
+                  <div class="theme-thumb">
+                    <video class="theme-thumb-poster" preload="metadata" muted playsinline aria-hidden="true">
+                      <source src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/TeachTheTeacher_Shaping%20AI%20in%20the%20Classroom.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <button type="button" class="theme-thumb-button" data-video-src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/TeachTheTeacher_Shaping%20AI%20in%20the%20Classroom.mp4" data-video-title="Shaping AI in the Classroom" aria-label="Play video: Shaping AI in the Classroom"></button>
+                    <span class="video-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5L8 5.5z"></path></svg></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="view-section">
+              <div class="view-section-head">
+                <p class="t-label">Outcomes</p>
+                <h4 class="t-heading">What teachers walk away with.</h4>
+                <p class="t-body">Confident, responsible AI use staff can take into the very next lesson, and pass on to students.</p>
+              </div>
+              <div class="outcomes-grid" role="list">
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">1</p>
+                  <h3 class="outcome-title">Use AI to deepen understanding, not shortcut it</h3>
+                  <p class="outcome-desc">See first-hand how AI, used well, helps students genuinely grasp a topic rather than skip the thinking, mapped to each stage of learning, from first understanding to retrieval practice and feedback.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">2</p>
+                  <h3 class="outcome-title">Get students wanting to use AI well</h3>
+                  <p class="outcome-desc">Leave with concrete techniques that make understanding-led use more rewarding than copy-paste, so good habits come from motivation, not just rules and warnings.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">3</p>
+                  <h3 class="outcome-title">Confidence to guide students</h3>
+                  <p class="outcome-desc">Teach responsible, productive AI use, model it yourself, set clear expectations, and recognise misuse rather than fearing it.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">4</p>
+                  <h3 class="outcome-title">A balanced, evidence-aware stance</h3>
+                  <p class="outcome-desc">Understand where AI genuinely helps and where it fails, grounded in current research on AI and learning rather than hype or fear, including what &ldquo;cognitive debt&rdquo; means for your classroom.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">5</p>
+                  <h3 class="outcome-title">AI-resilient tasks &amp; assessment</h3>
+                  <p class="outcome-desc">Design lessons and assessments that stay meaningful in a world of AI, with practical alternatives to the unreliable detection tools and outright bans most schools fall back on.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">6</p>
+                  <h3 class="outcome-title">Practical tools you keep</h3>
+                  <p class="outcome-desc">A take-home kit you can use straight away: a personal library of prompts; a one-page map of which AI tool suits each stage of learning; a quick checklist for sense-checking anything AI produces; and ready-to-adapt classroom guidance and a simple AI-use policy. Plus a completion certificate.</p>
+                </article>
+                <!-- OPTIONAL A/B-TEST CARD (teacher productivity): leave commented out; do not display by default
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">7</p>
+                  <h3 class="outcome-title">Time back, quality in your hands</h3>
+                  <p class="outcome-desc">Draft plans, resources and feedback faster, with you firmly in control of quality.</p>
+                </article>
+                -->
+              </div>
+            </div>
+
+            <div class="view-section">
+              <div class="view-section-head">
+                <p class="t-label">The workshop</p>
+                <h4 class="t-heading">A practical workshop for teaching staff.</h4>
+                <p class="t-body">One focused, hands-on session built around using AI to deepen student learning, guide it responsibly, and handle the everyday realities of teaching. Practical, not abstract theory.</p>
+              </div>
+              <div class="workshop-layout">
+                <aside class="format-card" aria-labelledby="teacher-format-heading">
+                  <h3 class="format-card-title" id="teacher-format-heading">Workshop format</h3>
+                  <ul class="format-list">
+                    <li><span class="format-term">Format</span><span class="format-value">Hands-on staff workshop</span></li>
+                    <li><span class="format-term">Length</span><span class="format-value">A focused session, scheduled to suit your school</span></li>
+                    <li><span class="format-term">Audience</span><span class="format-value">Teaching staff, departments, or whole-staff INSET</span></li>
+                    <li><span class="format-term">Delivery</span><span class="format-value">In person, with online options by arrangement</span></li>
+                    <li><span class="format-term">Approach</span><span class="format-value">Principles teachers can apply to their own subjects and key stages</span></li>
+                    <li><span class="format-term">Outcome</span><span class="format-value">Staff confident to use AI to deepen learning, and to guide students to do the same</span></li>
+                  </ul>
+                </aside>
+                <div>
+                  <h3 class="workshop-flex-heading">What the workshop covers</h3>
+                  <p class="workshop-flex-intro">A single, practical session designed to leave every member of staff more confident and better equipped, whatever their starting point.</p>
+                  <div class="benefits-grid" role="list">
+                    <article class="benefit-card" role="listitem"><h4 class="card-title">How AI really works</h4><p>A plain-English foundation: what AI and AI agents actually are, and why they get things wrong, so staff can judge any tool.</p></article>
+                    <article class="benefit-card" role="listitem"><h4 class="card-title">AI across the learning journey</h4><p>Applying AI to the real stages of learning, retrieval, spacing and feedback, so it strengthens memory rather than replacing it.</p></article>
+                    <article class="benefit-card" role="listitem"><h4 class="card-title">Responsible and safe use</h4><p>The genuine risks, from data and bias to AI-generated images, handled in line with DfE safeguarding guidance and your DSL processes.</p></article>
+                    <article class="benefit-card" role="listitem"><h4 class="card-title">AI-resilient assessment</h4><p>Designing tasks and assessments that stay meaningful, without relying on detection tools that are demonstrably unreliable.</p></article>
+                    <article class="benefit-card" role="listitem"><h4 class="card-title">The future-ready classroom</h4><p>The durable human skills, critical thinking, communication, problem-solving, that matter more as AI spreads.</p></article>
+                    <article class="benefit-card" role="listitem"><h4 class="card-title">From shortcut to understanding</h4><p>Practical techniques to get students choosing to learn with AI, rather than leaning on it to cut corners.</p></article>
+                  </div>
+                </div>
+              </div>
+              <div class="view-cta">
+                <a href="#contact" class="btn btn-amber btn-lift">Enquire about teacher training <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ VIEW: Parents ============ -->
+          <div class="view" id="view-parents" role="tabpanel" aria-labelledby="tab-parents" data-view="parents" hidden>
+            <div class="view-hero">
+              <div class="view-hero-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
+              </div>
+              <h3 class="t-heading">Personalised AI support for <span class="keyword">your child</span>.</h3>
+              <p class="view-hero-sub">One-to-one sessions that help your child use AI as a genuine learning and building partner, with structure, judgement, and responsible habits that last.</p>
+            </div>
+
+            <div class="view-section">
+              <div class="view-section-head">
+                <p class="t-label">What your child learns</p>
+                <h4 class="t-heading">The two core areas we teach.</h4>
+                <p class="t-body">Two skills for two stages. Using AI to learn more effectively today, and learning to build with it for what comes next.</p>
+              </div>
+              <div class="theme-grid" role="list">
+                <article class="theme-card" role="listitem">
+                  <div class="theme-thumb">
+                    <video class="theme-thumb-poster" preload="metadata" muted playsinline aria-hidden="true">
+                      <source src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/AI-for-learning.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <button type="button" class="theme-thumb-button" data-video-src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/AI-for-learning.mp4" data-video-title="AI Skills for Learning" aria-label="Play video: AI Skills for Learning"></button>
+                    <span class="video-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5L8 5.5z"></path></svg></span>
+                  </div>
+                  <div class="theme-meta">
+                    <p class="t-label">For your studies now</p>
+                    <p class="theme-title">AI Skills for Learning</p>
+                    <p class="theme-desc">Using AI to get more from your studies today: revision, active recall, feedback, and a genuinely deeper understanding of the material, rather than shortcuts.</p>
+                  </div>
+                </article>
+                <article class="theme-card" role="listitem">
+                  <div class="theme-thumb">
+                    <video class="theme-thumb-poster" preload="metadata" muted playsinline aria-hidden="true">
+                      <source src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/AI-for-building.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <button type="button" class="theme-thumb-button" data-video-src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/AI-for-building.mp4" data-video-title="AI Skills for Building" aria-label="Play video: AI Skills for Building"></button>
+                    <span class="video-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5L8 5.5z"></path></svg></span>
+                  </div>
+                  <div class="theme-meta">
+                    <p class="t-label">For university and beyond</p>
+                    <p class="theme-title">AI Skills for Building</p>
+                    <p class="theme-desc">Developing the capability universities and employers increasingly reward: designing and building your own AI tools, from simple assistants to full working products that solve real problems.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="view-section">
+              <div class="view-section-head">
+                <p class="t-label">Outcomes</p>
+                <h4 class="t-heading">What your child walks away with.</h4>
+                <p class="t-body">Practical capability they can use immediately, the same outcomes we build with students in our workshops.</p>
+              </div>
+              <div class="outcomes-grid" role="list">
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">1</p>
+                  <h3 class="outcome-title">A smarter way to learn</h3>
+                  <p class="outcome-desc">They learn how to use AI for revision, active recall, explanation, essay planning, feedback, and independent study without becoming dependent on it.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">2</p>
+                  <h3 class="outcome-title">Using AI to sharpen their thinking</h3>
+                  <p class="outcome-desc">They practise briefing AI clearly, giving context, asking better questions, challenging weak answers, checking assumptions, and improving outputs through iteration.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">3</p>
+                  <h3 class="outcome-title">The confidence to build AI tools of their own</h3>
+                  <p class="outcome-desc">They create an assistant, workflow, or prototype using modern AI systems, linked to a real academic, creative, or personal use case they can keep developing.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">4</p>
+                  <h3 class="outcome-title">Responsible AI judgement</h3>
+                  <p class="outcome-desc">They learn where AI is useful, where it fails, why verification matters, and how to use AI ethically and honestly in their studies.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">5</p>
+                  <h3 class="outcome-title">Creative problem-solving confidence</h3>
+                  <p class="outcome-desc">They move from passive user to active builder: spotting problems, designing solutions, testing ideas, and improving them.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">6</p>
+                  <h3 class="outcome-title">Confidence and direction</h3>
+                  <p class="outcome-desc">They come away seeing AI as something they can use with control and purpose, rather than something confusing or overwhelming.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="view-section">
+              <div class="view-section-head">
+                <p class="t-label">The session: how it works</p>
+                <h4 class="t-heading">Personalised AI fluency sessions for students.</h4>
+                <p class="t-body">Private sessions are designed around the individual student. Some need help using AI to revise more effectively. Some want to understand how to use AI without becoming dependent on it. Others want to build tools, explore ideas, or develop confidence with the technologies shaping the future.</p>
+              </div>
+              <div class="private-layout">
+                <aside class="format-card" aria-labelledby="private-format-heading">
+                  <h3 class="format-card-title" id="private-format-heading">Session format</h3>
+                  <ul class="format-list">
+                    <li><span class="format-term">Format</span><span class="format-value">1-to-1 personalised session</span></li>
+                    <li><span class="format-term">Audience</span><span class="format-value">Students of different ages, tailored by maturity and need</span></li>
+                    <li><span class="format-term">Delivery</span><span class="format-value">Online initially; in-person by arrangement</span></li>
+                    <li><span class="format-term">Length</span><span class="format-value">90-120 minutes</span></li>
+                    <li><span class="format-term">Focus</span><span class="format-value">AI for learning, thinking, responsible use, creativity, and building</span></li>
+                    <li><span class="format-term">Outcome</span><span class="format-value">A personalised workflow, study approach, AI assistant, or project idea they can continue using</span></li>
+                  </ul>
+                </aside>
+                <div>
+                  <h3 class="private-cover-heading">What a private session can cover</h3>
+                  <div class="private-grid" role="list">
+                    <article class="private-card" role="listitem"><h4 class="card-title">AI for studying and revision</h4><p>Using AI for active recall, explanations, practice questions, planning, feedback, and understanding difficult concepts.</p></article>
+                    <article class="private-card" role="listitem"><h4 class="card-title">AI for better thinking</h4><p>Learning how to ask better questions, challenge weak answers, check assumptions, and avoid simply accepting whatever AI says.</p></article>
+                    <article class="private-card" role="listitem"><h4 class="card-title">AI for building</h4><p>Creating a simple tool, assistant, workflow, or project linked to the student&rsquo;s interests, schoolwork, or personal goals.</p></article>
+                    <article class="private-card" role="listitem"><h4 class="card-title">Responsible AI habits</h4><p>Understanding where AI helps, where it fails, how to verify outputs, and how to use it without outsourcing their own effort.</p></article>
+                    <article class="private-card" role="listitem"><h4 class="card-title">Confidence and direction</h4><p>Helping the student see AI as something they can use with control and purpose, rather than something confusing or overwhelming.</p></article>
+                  </div>
+                </div>
+              </div>
+              <div class="view-cta">
+                <a href="#contact" class="btn btn-amber btn-lift">Enquire about a private session <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ VIEW: University Students ============ -->
+          <div class="view" id="view-uni" role="tabpanel" aria-labelledby="tab-uni" data-view="uni" hidden>
+            <div class="view-hero">
+              <div class="view-hero-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4L2 9l10 5 10-5-10-5z"/><path d="M6 11v5c0 1.2 2.7 2.5 6 2.5s6-1.3 6-2.5v-5"/><path d="M22 9v5"/></svg>
+              </div>
+              <h3 class="t-heading">Learn to <span class="keyword">build with AI</span>, for university and your career.</h3>
+              <p class="view-hero-sub">You already know how to study. The graduates who stand out will be those who can build with AI, work alongside AI agents, and turn ideas into real, working things, for your degree, your projects, and the career you're heading into.</p>
+            </div>
+
+            <div class="view-section">
+              <div class="single-video">
+                <div class="video-feature-card">
+                  <div class="theme-thumb">
+                    <video class="theme-thumb-poster" preload="metadata" muted playsinline aria-hidden="true">
+                      <source src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/Building%20with%20AI_%20university.mp4#t=0.5" type="video/mp4">
+                    </video>
+                    <button type="button" class="theme-thumb-button" data-video-src="https://pub-fd4c7f2fc4f044bab2d068d9ab4e4f0b.r2.dev/Building%20with%20AI_%20university.mp4" data-video-title="Building with AI: University" aria-label="Play video: Building with AI: University"></button>
+                    <span class="video-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5L8 5.5z"></path></svg></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="view-section">
+              <div class="view-section-head">
+                <p class="t-label">Outcomes</p>
+                <h4 class="t-heading">What you'll walk away with.</h4>
+                <p class="t-body">This is our AI-for-building programme, focused on what matters most once you're at university: making things and working with AI.</p>
+              </div>
+              <div class="outcomes-grid" role="list">
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">1</p>
+                  <h3 class="outcome-title">Build real, working things</h3>
+                  <p class="outcome-desc">Design and ship assistants, tools, workflows, and prototypes tied to your subject, research, or side projects, not toy examples.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">2</p>
+                  <h3 class="outcome-title">Work with AI agents</h3>
+                  <p class="outcome-desc">Understand and direct modern agentic AI to actually get work done, chaining tools and steps rather than just chatting.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">3</p>
+                  <h3 class="outcome-title">Key concepts that last</h3>
+                  <p class="outcome-desc">Learn how today's AI systems, agents, and tools actually work, so you can keep up as the technology moves.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">4</p>
+                  <h3 class="outcome-title">A serious employability edge</h3>
+                  <p class="outcome-desc">The build-and-ship AI skills employers are now competing to hire, and the confidence to talk about them.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">5</p>
+                  <h3 class="outcome-title">From idea to shipped product</h3>
+                  <p class="outcome-desc">Spot a real problem, design a solution, build it, test it, and improve it, the full loop, end to end.</p>
+                </article>
+                <article class="outcome-item" role="listitem">
+                  <p class="outcome-number" aria-hidden="true">6</p>
+                  <h3 class="outcome-title">Responsible, credible use</h3>
+                  <p class="outcome-desc">Build with judgement, verify what AI produces, and use it honestly within your university's rules.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="view-section">
+              <div class="view-section-head">
+                <p class="t-label">How it works</p>
+                <h4 class="t-heading">Two ways to build your AI skills.</h4>
+                <p class="t-body">Whether you're a student getting ahead or a parent investing in your child's future, choose the format that fits.</p>
+              </div>
+              <div class="formats-grid">
+                <article class="pathway-card">
+                  <p class="pathway-card-label">Group workshop</p>
+                  <h3 class="card-title">University workshops</h3>
+                  <p class="pathway-copy">A hands-on build sprint for course groups, societies, and student cohorts who want to start building with AI together.</p>
+                  <ul class="pathway-points">
+                    <li>In-person or online, scaled to your group</li>
+                    <li>Build a real AI tool, assistant, or agent workflow</li>
+                    <li>Great for societies, departments, and employability programmes</li>
+                    <li>Focused on building, working with AI, and shipping</li>
+                  </ul>
+                </article>
+                <article class="pathway-card">
+                  <p class="pathway-card-label">1-to-1 session</p>
+                  <h3 class="card-title">Personalised sessions</h3>
+                  <p class="pathway-copy">A personalised session built around your degree, your projects, and the career you're aiming for.</p>
+                  <ul class="pathway-points">
+                    <li>Online initially; in-person by arrangement</li>
+                    <li>Tailored to your subject, goals, and starting point</li>
+                    <li>Build something real and learn to keep developing it</li>
+                    <li>Ideal for students, and parents investing in their future</li>
+                  </ul>
+                </article>
+              </div>
+              <div class="view-cta">
+                <a href="#contact" class="btn btn-amber btn-lift">Enquire about a workshop or 1:1 session <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -1269,326 +1892,6 @@
       </div>
     </section>
 
-    <section class="problem section" id="why-this-matters" aria-labelledby="problem-heading">
-      <div class="container">
-        <p class="t-label fade-up">Why this matters</p>
-        <h2 class="t-heading fade-up" id="problem-heading">The question education leaders and parents are now facing.</h2>
-        <p class="problem-intro fade-up">
-          Students are already using AI. What matters now is whether they will learn to use it well.
-        </p>
-
-        <ul class="problem-questions fade-up" role="list">
-          <li>How do we move beyond blanket warnings about AI misuse and teach students responsible, productive AI use?</li>
-          <li>How do we help students use AI to think better, not think less?</li>
-          <li>What does future-readiness look like beyond grades, university applications, and traditional digital skills?</li>
-          <li>How do we prepare students for a world where AI is changing study, work, creativity, and every profession?</li>
-        </ul>
-
-        <p class="problem-response fade-up">
-          Arslan Institute gives students a practical, structured place to start.
-        </p>
-      </div>
-    </section>
-
-    <section class="outcomes section" id="outcomes" aria-labelledby="outcomes-heading">
-      <div class="container">
-        <p class="t-label fade-up">Outcomes</p>
-        <h2 class="t-heading fade-up" id="outcomes-heading">What students walk away with.</h2>
-        <p class="t-body section-intro fade-up">
-          Practical capability students can use immediately.
-        </p>
-
-        <div class="outcomes-grid fade-up-group" role="list">
-          <article class="outcome-item" role="listitem">
-            <p class="outcome-number" aria-hidden="true">1</p>
-            <h3 class="outcome-title">A smarter way to learn</h3>
-            <p class="outcome-desc">Students learn how to use AI for revision, active recall, explanation, essay planning, feedback, and independent study without becoming dependent on it.</p>
-          </article>
-
-          <article class="outcome-item" role="listitem">
-            <p class="outcome-number" aria-hidden="true">2</p>
-            <h3 class="outcome-title">Using AI to sharpen their thinking</h3>
-            <p class="outcome-desc">They practise briefing AI clearly, giving context, asking better questions, challenging weak answers, checking assumptions, and improving outputs through iteration.</p>
-          </article>
-
-          <article class="outcome-item" role="listitem">
-            <p class="outcome-number" aria-hidden="true">3</p>
-            <h3 class="outcome-title">The confidence to build powerful AI tools of their own</h3>
-            <p class="outcome-desc">Students create an assistant, workflow, custom GPT-style tool, or prototype using modern AI systems, linked to a real academic, creative, or practical use case they can develop further after the workshop.</p>
-          </article>
-
-          <article class="outcome-item" role="listitem">
-            <p class="outcome-number" aria-hidden="true">4</p>
-            <h3 class="outcome-title">Responsible AI judgement</h3>
-            <p class="outcome-desc">They learn where AI is useful, where it fails, how hallucinations happen, why verification matters, and how to use AI ethically in an academic environment.</p>
-          </article>
-
-          <article class="outcome-item" role="listitem">
-            <p class="outcome-number" aria-hidden="true">5</p>
-            <h3 class="outcome-title">Creative problem-solving confidence</h3>
-            <p class="outcome-desc">The workshop helps students move from passive users to active builders: spotting problems, designing solutions, testing ideas, and improving them.</p>
-          </article>
-
-          <article class="outcome-item" role="listitem">
-            <p class="outcome-number" aria-hidden="true">6</p>
-            <h3 class="outcome-title">Debate, discussion, and presentation confidence</h3>
-            <p class="outcome-desc">Students take part in detailed discussion about the benefits, limits, risks, and practical implications of AI use, challenge one another&rsquo;s thinking, and explain what they built with clarity, confidence, and ownership.</p>
-          </article>
-        </div>
-
-        <p class="outcomes-quote fade-up">
-          We help students become capable users, critical thinkers, and confident builders.
-        </p>
-      </div>
-    </section>
-
-    <section class="pathways" id="pathways" aria-labelledby="pathways-heading">
-      <div class="container">
-        <p class="t-label fade-up">Pathways</p>
-        <h2 class="t-heading fade-up" id="pathways-heading">Choose the pathway that fits you.</h2>
-        <p class="t-body section-intro fade-up">
-          Schools and tuition centres usually need a structured group workshop. Parents usually need personalised support for one student.
-        </p>
-
-        <div class="pathways-grid fade-up-group" role="list">
-          <article class="pathway-card" role="listitem">
-            <p class="pathway-card-label">Group workshop</p>
-            <h3 class="card-title">Schools &amp; Tuition Centres</h3>
-            <p class="pathway-copy">A flexible AI fluency workshop for student groups, designed for sixth forms, schools, and tuition centres that want a serious, practical programme around AI, learning, judgement, and building.</p>
-            <ul class="pathway-points" aria-label="Group workshop highlights">
-              <li>Focused sessions or a full-day programme</li>
-              <li>Designed for sixth form groups, with adaptations by exception</li>
-              <li>Suitable for schools, careers days, digital skills programmes, and tuition centre cohorts</li>
-              <li>Students learn, build, discuss, and present</li>
-              <li>Delivered in person, with online options by arrangement</li>
-            </ul>
-            <a href="#group-workshop" class="btn btn-secondary">Explore the group workshop</a>
-          </article>
-
-          <article class="pathway-card" role="listitem">
-            <p class="pathway-card-label">Personalised 1-to-1 session</p>
-            <h3 class="card-title">Parents &amp; Students</h3>
-            <p class="pathway-copy">A personalised AI fluency session for students who need individual support using AI for learning, thinking, revision, creativity, or building.</p>
-            <ul class="pathway-points" aria-label="Private session highlights">
-              <li>Suitable for a wider range of ages</li>
-              <li>Tailored to the student&rsquo;s interests and starting point</li>
-              <li>Focused on practical use, confidence, and responsible habits</li>
-              <li>Online initially, in-person by arrangement</li>
-              <li>Ideal for students already using AI but needing better structure</li>
-            </ul>
-            <a href="#private-sessions" class="btn btn-secondary">Explore private sessions</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="workshop section" id="group-workshop" aria-labelledby="workshop-heading">
-      <div class="container">
-        <p class="t-label fade-up">Schools &amp; Tuition Centres</p>
-        <h2 class="t-heading fade-up" id="workshop-heading">Full-day AI fluency workshops for student groups.</h2>
-        <p class="t-body section-intro fade-up">
-          A practical, interactive programme for schools and tuition centres that want students to move beyond basic AI awareness into responsible, useful, hands-on capability.
-        </p>
-        <p class="t-body section-subcopy fade-up">
-          The same core workshop can be delivered in schools, sixth forms, and tuition centre settings. It is designed primarily for sixth form students, with adaptations available by exception depending on age, ability, and context.
-        </p>
-
-        <div class="workshop-layout">
-          <aside class="format-card" aria-labelledby="format-heading">
-            <h3 class="format-card-title" id="format-heading">Workshop format</h3>
-            <ul class="format-list">
-              <li>
-                <span class="format-term">Format</span>
-                <span class="format-value">In-person group workshop</span>
-              </li>
-              <li>
-                <span class="format-term">Length</span>
-                <span class="format-value">Single module or full programme</span>
-              </li>
-              <li>
-                <span class="format-term">Group size</span>
-                <span class="format-value">10-12 students ideal</span>
-              </li>
-              <li>
-                <span class="format-term">Audience</span>
-                <span class="format-value">Sixth form students primarily</span>
-              </li>
-              <li>
-                <span class="format-term">Best fit</span>
-                <span class="format-value">Academically engaged, digitally curious students</span>
-              </li>
-              <li>
-                <span class="format-term">Availability</span>
-                <span class="format-value">Online or shorter formats by arrangement</span>
-              </li>
-            </ul>
-          </aside>
-
-          <div class="fade-up">
-            <h3 class="workshop-flex-heading">Flexible formats</h3>
-            <p class="workshop-flex-intro">
-              Delivered as a single focused module or as the full programme, depending on your timetable, priorities, and group. The full programme is the complete experience; modules are a way to start.
-            </p>
-
-            <div class="module-grid fade-up-group" role="list" aria-label="Flexible workshop formats">
-              <article class="module-card" role="listitem">
-                <div>
-                  <p class="pathway-card-label">Module 1</p>
-                  <h3 class="card-title">AI for Learning</h3>
-                </div>
-                <p class="module-copy">Using AI to revise, recall, plan essays, and understand difficult material without becoming dependent on it. Students leave with a personal, repeatable way to study with AI.</p>
-                <p class="module-duration">A focused session of around 2 hours, adaptable to your timetable</p>
-              </article>
-
-              <article class="module-card" role="listitem">
-                <div>
-                  <p class="pathway-card-label">Module 2</p>
-                  <h3 class="card-title">AI for Building</h3>
-                </div>
-                <p class="module-copy">The hands-on build sprint. Students design and build a useful AI tool, assistant, or workflow tied to a real goal, and leave with something they made and can explain.</p>
-                <p class="module-duration">A focused session of around 2 hours, adaptable to your timetable</p>
-              </article>
-
-            </div>
-
-            <article class="programme-card fade-up" aria-labelledby="full-programme-heading">
-              <p class="pathway-card-label">Flagship format</p>
-              <h3 class="card-title" id="full-programme-heading">The Full Programme</h3>
-              <p class="programme-copy">Both modules delivered across a full day, the complete experience. Students learn, build, and present, moving from AI awareness to responsible, hands-on capability. This is the definitive version of the workshop; individual modules are focused entry points into it.</p>
-            </article>
-
-            <p class="workshop-note">
-              The workshop can be adapted for school priorities, student ability, available time, safeguarding requirements, and AI policy requirements.
-            </p>
-
-            <div class="workshop-benefits">
-              <p class="t-label fade-up">Institution benefits</p>
-              <h3 class="t-heading fade-up">What schools and tuition centres gain.</h3>
-              <div class="benefits-grid fade-up-group" role="list">
-                <article class="benefit-card" role="listitem">
-                  <h4 class="card-title">A credible AI fluency programme</h4>
-                  <p>Give students practical exposure to AI without needing to design an internal programme from scratch.</p>
-                </article>
-                <article class="benefit-card" role="listitem">
-                  <h4 class="card-title">A balanced message</h4>
-                  <p>The workshop avoids both hype and fear. Students learn that AI is powerful, imperfect, and best used with judgement.</p>
-                </article>
-                <article class="benefit-card" role="listitem">
-                  <h4 class="card-title">Visible student output</h4>
-                  <p>Students leave with something they built and can explain, making the learning visible to staff, parents, and peers.</p>
-                </article>
-                <article class="benefit-card" role="listitem">
-                  <h4 class="card-title">A repeatable annual model</h4>
-                  <p>The workshop can run each year for new student cohorts, creating a practical AI fluency touchpoint across the calendar.</p>
-                </article>
-                <article class="benefit-card" role="listitem">
-                  <h4 class="card-title">A timely offer for ambitious families</h4>
-                  <p>Parents are increasingly asking what skills students will need next. This gives schools and tuition centres a credible, practical answer.</p>
-                </article>
-                <article class="benefit-card" role="listitem">
-                  <h4 class="card-title">A programme that complements academic support</h4>
-                  <p>The focus is not replacing tutoring or teaching. It helps students use AI to learn, think, plan, research, and build more effectively.</p>
-                </article>
-              </div>
-            </div>
-
-            <div class="section-cta">
-              <a href="#contact" class="btn btn-primary">Enquire about a group workshop</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="private-section" id="private-sessions" aria-labelledby="private-heading">
-      <div class="container">
-        <p class="t-label fade-up">Parents &amp; Students</p>
-        <h2 class="t-heading fade-up" id="private-heading">Personalised AI fluency sessions for students.</h2>
-        <p class="t-body section-intro fade-up">
-          For parents who want their child to use AI as a genuine learning and building partner.
-        </p>
-        <p class="t-body section-subcopy fade-up">
-          Private sessions are designed around the individual student. Some need help using AI to revise more effectively. Some want to understand how to use AI without becoming dependent on it. Others want to build tools, explore ideas, or develop confidence with the technologies shaping the future.
-        </p>
-
-        <div class="private-layout">
-          <aside class="format-card" aria-labelledby="private-format-heading">
-            <h3 class="format-card-title" id="private-format-heading">Session format</h3>
-            <ul class="format-list">
-              <li>
-                <span class="format-term">Format</span>
-                <span class="format-value">1-to-1 personalised session</span>
-              </li>
-              <li>
-                <span class="format-term">Audience</span>
-                <span class="format-value">Students of different ages, tailored by maturity and need</span>
-              </li>
-              <li>
-                <span class="format-term">Delivery</span>
-                <span class="format-value">Online initially; in-person by arrangement</span>
-              </li>
-              <li>
-                <span class="format-term">Length</span>
-                <span class="format-value">90-120 minutes</span>
-              </li>
-              <li>
-                <span class="format-term">Focus</span>
-                <span class="format-value">AI for learning, thinking, responsible use, creativity, and building</span>
-              </li>
-              <li>
-                <span class="format-term">Outcome</span>
-                <span class="format-value">A personalised workflow, study approach, AI assistant, or project idea they can continue using</span>
-              </li>
-            </ul>
-          </aside>
-
-          <div class="fade-up">
-            <h3 class="private-cover-heading">What a private session can cover</h3>
-            <div class="private-grid fade-up-group" role="list">
-              <article class="private-card" role="listitem">
-                <h4 class="card-title">AI for studying and revision</h4>
-                <p>Using AI for active recall, explanations, practice questions, planning, feedback, and understanding difficult concepts.</p>
-              </article>
-              <article class="private-card" role="listitem">
-                <h4 class="card-title">AI for better thinking</h4>
-                <p>Learning how to ask better questions, challenge weak answers, check assumptions, and avoid simply accepting whatever AI says.</p>
-              </article>
-              <article class="private-card" role="listitem">
-                <h4 class="card-title">AI for building</h4>
-                <p>Creating a simple tool, assistant, workflow, or project linked to the student&rsquo;s interests, schoolwork, or personal goals.</p>
-              </article>
-              <article class="private-card" role="listitem">
-                <h4 class="card-title">Responsible AI habits</h4>
-                <p>Understanding where AI helps, where it fails, how to verify outputs, and how to use it without outsourcing their own effort.</p>
-              </article>
-              <article class="private-card" role="listitem">
-                <h4 class="card-title">Confidence and direction</h4>
-                <p>Helping the student see AI as something they can use with control and purpose, rather than something confusing or overwhelming.</p>
-              </article>
-            </div>
-
-            <div class="section-cta">
-              <a href="#contact" class="btn btn-primary">Enquire about a private session</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="enquiry-cta" aria-labelledby="enquiry-cta-heading">
-      <div class="container">
-        <p class="t-label fade-up">Enquire</p>
-        <h2 class="t-heading fade-up" id="enquiry-cta-heading">Bring AI fluency to your students.</h2>
-        <p class="enquiry-cta-copy fade-up">
-          Whether you are a school, tuition centre, or parent, we can help students develop practical AI capability in a structured, responsible way.
-        </p>
-        <div class="hero-ctas fade-up" style="justify-content:center; margin-bottom:0;">
-          <a href="#contact" class="btn btn-amber">Enquire about a group workshop</a>
-          <a href="#contact" class="btn btn-outline-light">Enquire about a private session</a>
-        </div>
-      </div>
-    </section>
-
     <section class="contact section" id="contact" aria-labelledby="contact-heading">
       <div class="container">
         <p class="t-label fade-up">Enquire</p>
@@ -1613,19 +1916,8 @@
 
               <div class="form-row">
                 <div class="form-group">
-                  <label for="name">Your name</label>
+                  <label for="name" id="name-label">Your name</label>
                   <input class="form-input" type="text" id="name" name="name" placeholder="Jane Smith" required autocomplete="name">
-                </div>
-                <div class="form-group">
-                  <label for="organisation-name">Organisation / school name / parent enquiry</label>
-                  <input class="form-input" type="text" id="organisation-name" name="organisation_name" placeholder="Example Sixth Form or Parent enquiry" required autocomplete="organization">
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="role">Your role</label>
-                  <input class="form-input" type="text" id="role" name="role" placeholder="Head of Sixth Form, Centre Director, Parent" required autocomplete="organization-title">
                 </div>
                 <div class="form-group">
                   <label for="email">Email address</label>
@@ -1633,21 +1925,31 @@
                 </div>
               </div>
 
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="student-count">Approximate number of students</label>
-                  <input class="form-input" type="text" id="student-count" name="student_count" placeholder="e.g. 18 students" required>
+              <div class="form-institutional" id="form-institutional">
+                <p class="form-institutional-label">For school and teacher enquiries</p>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="organisation-name">Organisation / school name <span style="opacity:0.5;">(optional)</span></label>
+                    <input class="form-input" type="text" id="organisation-name" name="organisation_name" placeholder="Example Sixth Form" autocomplete="organization">
+                  </div>
+                  <div class="form-group">
+                    <label for="role">Your role <span style="opacity:0.5;">(optional)</span></label>
+                    <input class="form-input" type="text" id="role" name="role" placeholder="Head of Sixth Form, Centre Director" autocomplete="organization-title">
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="enquiry-type">Enquiry type</label>
-                  <select class="form-select" id="enquiry-type" name="enquiry_type" required>
-                    <option value="">Select enquiry type</option>
-                    <option value="School workshop">School workshop</option>
-                    <option value="Tuition centre workshop">Tuition centre workshop</option>
-                    <option value="Private student session">Private student session</option>
-                    <option value="General enquiry">General enquiry</option>
-                  </select>
-                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="enquiry-type">Enquiry type</label>
+                <select class="form-select" id="enquiry-type" name="enquiry_type" required>
+                  <option value="">Select enquiry type</option>
+                  <option value="School / tuition workshop (teaching students)">School / tuition workshop (teaching students)</option>
+                  <option value="Teacher training (Teach the Teacher)">Teacher training (Teach the Teacher)</option>
+                  <option value="Private student session (parent enquiry)">Private student session (parent enquiry)</option>
+                  <option value="University workshop">University workshop</option>
+                  <option value="University 1-to-1 session">University 1-to-1 session</option>
+                  <option value="General enquiry">General enquiry</option>
+                </select>
               </div>
 
               <div class="form-group">
@@ -1661,7 +1963,7 @@
                   class="form-textarea"
                   id="message"
                   name="message"
-                  placeholder="Tell us whether you are enquiring as a school, tuition centre, or parent, and what kind of support you are looking for."
+                  placeholder="Tell us a little about what you are looking for and how we can help."
                   required
                 ></textarea>
               </div>
@@ -1719,11 +2021,10 @@
         <div class="footer-right">
           <p class="footer-contact"><a href="mailto:arslan@arslaninstitute.com">arslan@arslaninstitute.com</a></p>
           <div class="footer-links">
-            <a href="#why-this-matters">Why it matters</a>
-            <a href="#outcomes">Outcomes</a>
-            <a href="#pathways">Pathways</a>
-            <a href="#group-workshop">Group workshop</a>
-            <a href="#private-sessions">Private sessions</a>
+            <a href="#programmes" data-persona-link="teachers">For teachers</a>
+            <a href="#programmes" data-persona-link="parents">For parents</a>
+            <a href="#programmes" data-persona-link="uni">For university</a>
+            <a href="#about">About</a>
             <a href="privacy-policy.html">Privacy policy</a>
           </div>
           <p class="footer-legal">Arslan Institute is operated by Arslan Manzoor, trading as Arslan Institute, based in London. &copy; 2026 Arslan Institute.</p>
@@ -1740,6 +2041,204 @@
       }
       window.addEventListener('scroll', update, { passive: true });
       update();
+    })();
+
+    /* ---------- Persona switcher ---------- */
+    (function () {
+      var personaTabs = Array.prototype.slice.call(document.querySelectorAll('.persona-pill'));
+      var subTabs = Array.prototype.slice.call(document.querySelectorAll('.subpill'));
+      var subswitch = document.getElementById('teacher-subswitch');
+      var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
+      if (!personaTabs.length || !views.length) return;
+
+      var state = { persona: 'teachers', teacherMode: 'student' };
+
+      var viewIdFor = {
+        'teachers-student': 'view-teachers-student',
+        'teachers-teacher': 'view-teachers-teacher',
+        'parents': 'view-parents',
+        'uni': 'view-uni'
+      };
+      var hashFor = {
+        'teachers-student': 'teach-the-student',
+        'teachers-teacher': 'teach-the-teacher',
+        'parents': 'for-parents',
+        'uni': 'for-university'
+      };
+      var hashToState = {
+        'for-teachers': { persona: 'teachers', teacherMode: 'student' },
+        'teach-the-student': { persona: 'teachers', teacherMode: 'student' },
+        'teach-the-teacher': { persona: 'teachers', teacherMode: 'teacher' },
+        'for-parents': { persona: 'parents' },
+        'for-university': { persona: 'uni' },
+        'for-uni': { persona: 'uni' }
+      };
+
+      /* persona-aware content for the enquiry form */
+      var viewConfig = {
+        'teachers-student': {
+          form: {
+            heading: 'Enquire about a group workshop.',
+            sub: 'Tell us a little about your school or tuition centre and what you’re looking for. We’ll respond within 24-48 hours.',
+            institutional: true,
+            enquiryType: 'School / tuition workshop (teaching students)'
+          }
+        },
+        'teachers-teacher': {
+          form: {
+            heading: 'Enquire about teacher training.',
+            sub: 'Tell us a little about your school and your staff training needs. We’ll respond within 24-48 hours.',
+            institutional: true,
+            enquiryType: 'Teacher training (Teach the Teacher)'
+          }
+        },
+        'parents': {
+          form: {
+            heading: 'Enquire about a private session.',
+            sub: 'Tell us a little about your child and what you’re looking for. We’ll respond within 24-48 hours.',
+            institutional: false,
+            enquiryType: 'Private student session (parent enquiry)'
+          }
+        },
+        'uni': {
+          form: {
+            heading: 'Enquire about a workshop or 1:1 session.',
+            sub: 'Tell us whether you’re enquiring as a student or a parent, and what you’d like to focus on. We’ll respond within 24-48 hours.',
+            institutional: false,
+            enquiryType: 'University workshop'
+          }
+        }
+      };
+
+      var contactHeadingEl = document.getElementById('contact-heading');
+      var contactSubEl = document.querySelector('#contact .contact-sub');
+      var institutionalEl = document.getElementById('form-institutional');
+      var enquiryTypeEl = document.getElementById('enquiry-type');
+
+      function applyContent(key) {
+        var c = viewConfig[key];
+        if (!c) return;
+        if (c.form) {
+          if (contactHeadingEl) contactHeadingEl.textContent = c.form.heading;
+          if (contactSubEl) contactSubEl.textContent = c.form.sub;
+          setInstitutionalVisibility(c.form.institutional);
+          if (enquiryTypeEl && c.form.enquiryType) enquiryTypeEl.value = c.form.enquiryType;
+        }
+      }
+
+      var institutionalEnquiryTypes = [
+        'School / tuition workshop (teaching students)',
+        'Teacher training (Teach the Teacher)'
+      ];
+
+      function setInstitutionalVisibility(show) {
+        if (!institutionalEl) return;
+        var fields = institutionalEl.querySelectorAll('input, select');
+        institutionalEl.hidden = !show;
+        Array.prototype.forEach.call(fields, function (f) { f.disabled = !show; });
+      }
+
+      if (enquiryTypeEl) {
+        enquiryTypeEl.addEventListener('change', function () {
+          setInstitutionalVisibility(institutionalEnquiryTypes.indexOf(enquiryTypeEl.value) !== -1);
+        });
+      }
+
+      function activeViewKey() {
+        if (state.persona === 'teachers') {
+          return state.teacherMode === 'teacher' ? 'teachers-teacher' : 'teachers-student';
+        }
+        return state.persona;
+      }
+
+      function showView(key) {
+        var targetId = viewIdFor[key];
+        views.forEach(function (v) {
+          var on = v.id === targetId;
+          if (on) {
+            v.hidden = false;
+            v.classList.add('is-active');
+          } else {
+            v.classList.remove('is-active');
+            v.hidden = true;
+          }
+        });
+      }
+
+      function syncTabs() {
+        personaTabs.forEach(function (t) {
+          t.setAttribute('aria-selected', t.getAttribute('data-persona') === state.persona ? 'true' : 'false');
+        });
+        subTabs.forEach(function (t) {
+          t.setAttribute('aria-selected', t.getAttribute('data-teacher-mode') === state.teacherMode ? 'true' : 'false');
+        });
+        var teachersActive = state.persona === 'teachers';
+        if (teachersActive) {
+          subswitch.classList.add('is-shown');
+          /* allow display change to apply before fading in */
+          requestAnimationFrame(function () { subswitch.classList.add('is-visible'); });
+        } else {
+          subswitch.classList.remove('is-visible');
+          subswitch.classList.remove('is-shown');
+        }
+      }
+
+      function render(updateHash) {
+        var key = activeViewKey();
+        showView(key);
+        syncTabs();
+        applyContent(key);
+        if (updateHash && history.replaceState) {
+          history.replaceState(null, '', '#' + hashFor[key]);
+        }
+      }
+
+      personaTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          state.persona = tab.getAttribute('data-persona');
+          render(true);
+        });
+      });
+
+      subTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          state.persona = 'teachers';
+          state.teacherMode = tab.getAttribute('data-teacher-mode');
+          render(true);
+        });
+      });
+
+      /* nav / footer links that pre-select a persona */
+      document.querySelectorAll('[data-persona-link]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          var p = link.getAttribute('data-persona-link');
+          state.persona = p;
+          if (p === 'teachers') state.teacherMode = 'student';
+          render(true);
+        });
+      });
+
+      /* initialise from hash, if present */
+      var initialHash = (window.location.hash || '').replace('#', '');
+      var matchedHash = false;
+      if (hashToState[initialHash]) {
+        var s = hashToState[initialHash];
+        state.persona = s.persona;
+        if (s.teacherMode) state.teacherMode = s.teacherMode;
+        matchedHash = true;
+      }
+      render(false);
+
+      /* view hashes (e.g. arriving from another page) aren't real element ids,
+         so bring the switcher into view ourselves */
+      if (matchedHash) {
+        var hub = document.getElementById('programmes');
+        if (hub) {
+          requestAnimationFrame(function () {
+            hub.scrollIntoView({ behavior: 'auto', block: 'start' });
+          });
+        }
+      }
     })();
 
     (function () {

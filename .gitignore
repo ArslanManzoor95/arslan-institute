@@ -1,3 +1,9 @@
 node_modules/
 .vercel/
 .DS_Store
+
+# Video assets are hosted on Cloudflare R2, not committed to git
+*.mp4
+
+# Unused export
+Optimal Learning with AI — Arslan Institute.png
