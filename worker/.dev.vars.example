@@ -1,0 +1,8 @@
+# Local development secrets for `wrangler dev`.
+# Copy this file to worker/.dev.vars (git-ignored) and fill in real values.
+# In production these are set as Worker secrets with `wrangler secret put <NAME>`.
+
+RESEND_API_KEY="re_your_resend_api_key"
+FROM_EMAIL="hello@arslaninstitute.com"
+NOTIFY_EMAIL="arslan@arslaninstitute.com"
+BROCHURE_URL="https://arslaninstitute.com/brochure.pdf"

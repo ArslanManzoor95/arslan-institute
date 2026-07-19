@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get the programme brochure | Arslan Institute</title>
+  <meta
+    name="description"
+    content="Request the full Teach the Teacher programme brochure: every level, every format, the pre-workshop survey, and how impact is measured."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+
+  <style>
+    /* Design tokens shared with index.html and privacy-policy.html (site is flat static HTML, tokens duplicated per page). */
+    :root {
+      --bg: #f8f5ef;
+      --navy: #1b2a3b;
+      --amber: #bf8c52;
+      --amber-dark: #a6773f;
+      --text: #2e3d4f;
+      --text-muted: #6b7c8e;
+      --border: #e3dbd0;
+      --card: #ffffff;
+      --rule: #d5cdc2;
+      --error: #b03a2e;
+      --font-serif: 'Fraunces', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --radius: 6px;
+      --max-width: 1120px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Nav (mirrors privacy-policy.html) */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 18px 0;
+      background-color: rgba(248,245,239,0.96);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-wordmark {
+      font-family: var(--font-serif);
+      font-size: 1.375rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+    .nav-wordmark:hover { color: var(--amber); }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      transition: color 150ms ease;
+    }
+    .back-link:hover { color: var(--navy); }
+
+    /* Page */
+    .page { padding: 72px 0 96px; }
+    .page-inner { max-width: 640px; margin: 0 auto; }
+
+    .page-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 20px;
+    }
+    .page-title {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 18px;
+    }
+    .page-intro {
+      font-size: 1.0625rem;
+      line-height: 1.72;
+      color: var(--text);
+      margin-bottom: 44px;
+    }
+
+    /* Card wrapper (mirrors module-card / format-card on light sections) */
+    .brochure-card {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 36px;
+    }
+
+    /* Form (input styling matches index.html .form-input, adapted for the light background) */
+    .brochure-form { display: flex; flex-direction: column; gap: 20px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .form-input {
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      color: var(--navy);
+      background-color: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      width: 100%;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(191, 140, 82, 0.15);
+    }
+    .form-input::placeholder { color: #aab4bc; }
+
+    /* Honeypot: hidden from people and assistive tech; bots still fill it. */
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .form-privacy {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Button (matches index.html .btn / .btn-amber) */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      line-height: 1;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+      white-space: nowrap;
+    }
+    .btn-amber {
+      background-color: var(--amber);
+      color: #fff;
+      border-color: var(--amber);
+    }
+    .btn-amber:hover:not(:disabled), .btn-amber:focus-visible {
+      background-color: var(--amber-dark);
+      border-color: var(--amber-dark);
+      box-shadow: 0 2px 10px rgba(191, 140, 82, 0.28);
+    }
+    .btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+    .btn-lift:hover:not(:disabled), .btn-lift:focus-visible { transform: translateY(-2px); }
+    .btn:disabled { opacity: 0.75; cursor: default; }
+    .btn-icon {
+      width: 17px; height: 17px; flex-shrink: 0;
+      transition: transform 200ms ease;
+    }
+    .btn:hover:not(:disabled) .btn-icon, .btn:focus-visible .btn-icon { transform: translateX(3px); }
+    .form-submit { align-self: flex-start; }
+
+    /* Loading spinner */
+    .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 700ms linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Success state */
+    .brochure-success {
+      display: none;
+      padding: 36px;
+      background-color: #fbf8f2;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .brochure-success.visible { display: block; }
+    .brochure-success h2 {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 1.4rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .brochure-success p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    /* Error state (inline) */
+    .brochure-error {
+      display: none;
+      padding: 14px 16px;
+      background-color: rgba(176, 58, 46, 0.06);
+      border: 1px solid rgba(176, 58, 46, 0.25);
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--error);
+    }
+    .brochure-error.visible { display: block; }
+    .brochure-error a { color: var(--error); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* Footer (mirrors privacy-policy.html) */
+    .footer { padding: 32px 0; border-top: 1px solid var(--border); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-wordmark { font-family: var(--font-serif); font-size: 1.125rem; font-weight: 500; color: var(--navy); }
+    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .footer-links { display: flex; align-items: center; gap: 24px; }
+    .footer-links a { font-size: 0.875rem; color: var(--text-muted); transition: color 150ms ease; }
+    .footer-links a:hover { color: var(--navy); }
+    .footer-legal { font-size: 0.8125rem; color: var(--text-muted); opacity: 0.7; }
+
+    @media (max-width: 640px) {
+      .page { padding: 48px 0 64px; }
+      .brochure-card { padding: 26px 22px; }
+      .form-submit { align-self: stretch; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-right { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <div class="nav-inner">
+          <!-- Relative links back to the site root, so home works regardless of host/base path (this page lives at /schools/brochure/). -->
+          <a href="../../index.html" class="nav-wordmark" aria-label="Arslan Institute home">Arslan Institute</a>
+          <a href="../../index.html" class="back-link" aria-label="Back to homepage">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M11.5 7h-9M6 3.5L2.5 7 6 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back to home
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page">
+      <div class="container">
+        <div class="page-inner">
+
+          <p class="page-label">AI for schools</p>
+          <h1 class="page-title">Get the full programme brochure.</h1>
+          <p class="page-intro">
+            A detailed overview of the key workshops for teachers and students, which can be tailored for school and teacher needs. Fill in your details and it&rsquo;s on its way.
+          </p>
+
+          <div class="brochure-card">
+            <form class="brochure-form" id="brochure-form" novalidate>
+              <!-- Honeypot: real people leave this empty; the Worker rejects any submission where it is filled. -->
+              <div class="hp-field" aria-hidden="true">
+                <label for="website">Website</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+              </div>
+
+              <div class="form-group">
+                <label for="full-name">Full name</label>
+                <input class="form-input" type="text" id="full-name" name="full_name" placeholder="Jane Smith" required autocomplete="name">
+              </div>
+
+              <div class="form-group">
+                <label for="role">Role</label>
+                <input class="form-input" type="text" id="role" name="role" placeholder="Digital Lead, Deputy Head" required autocomplete="organization-title">
+              </div>
+
+              <div class="form-group">
+                <label for="organisation">Organisation / school</label>
+                <input class="form-input" type="text" id="organisation" name="organisation" placeholder="Example Secondary School" required autocomplete="organization">
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input class="form-input" type="email" id="email" name="email" placeholder="jane@school.sch.uk" required autocomplete="email">
+              </div>
+
+              <div class="brochure-error" id="brochure-error" role="alert" aria-live="assertive">
+                Something went wrong sending your request. Please try again, or email us directly at
+                <a href="mailto:arslan@arslaninstitute.com">arslan@arslaninstitute.com</a>.
+              </div>
+
+              <p class="form-privacy">
+                We&rsquo;ll use your details to send the brochure and follow up about workshops. We won&rsquo;t share them with anyone else.
+              </p>
+
+              <button type="submit" class="btn btn-amber btn-lift form-submit" id="submit-btn">
+                <span class="btn-text">Send me the brochure</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+              </button>
+            </form>
+
+            <div class="brochure-success" id="brochure-success" role="status" aria-live="polite">
+              <h2>Thanks.</h2>
+              <p>The brochure is on its way to your inbox. Arslan will be in touch shortly with a couple of times to talk.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-wordmark">Arslan Institute</span>
+        <div class="footer-right">
+          <div class="footer-links">
+            <a href="mailto:arslan@arslaninstitute.com">arslan@arslaninstitute.com</a>
+            <a href="../../privacy-policy.html">Privacy policy</a>
+            <a href="../../index.html">Home</a>
+          </div>
+          <p class="footer-legal">Arslan Institute is operated by Arslan Manzoor, trading as Arslan Institute, based in London. &copy; 2026 Arslan Institute.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      // Deployed Cloudflare Worker endpoint (see worker/README.md).
+      var BROCHURE_ENDPOINT = 'https://arslan-brochure.arslan-institute.workers.dev';
+
+      var form = document.getElementById('brochure-form');
+      var successBox = document.getElementById('brochure-success');
+      var errorBox = document.getElementById('brochure-error');
+      var submitBtn = document.getElementById('submit-btn');
+      var btnText = submitBtn.querySelector('.btn-text');
+      var btnIcon = submitBtn.querySelector('.btn-icon');
+      if (!form) return;
+
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      function setLoading(isLoading) {
+        submitBtn.disabled = isLoading;
+        if (isLoading) {
+          btnText.textContent = 'Sending';
+          btnIcon.style.display = 'none';
+          if (!submitBtn.querySelector('.spinner')) {
+            var s = document.createElement('span');
+            s.className = 'spinner';
+            submitBtn.appendChild(s);
+          }
+        } else {
+          btnText.textContent = 'Send me the brochure';
+          btnIcon.style.display = '';
+          var spin = submitBtn.querySelector('.spinner');
+          if (spin) spin.remove();
+        }
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        errorBox.classList.remove('visible');
+
+        var payload = {
+          full_name: form.full_name.value.trim(),
+          role: form.role.value.trim(),
+          organisation: form.organisation.value.trim(),
+          email: form.email.value.trim(),
+          website: form.website.value // honeypot, validated server-side
+        };
+
+        // Lightweight client-side check; the Worker validates authoritatively.
+        if (!payload.full_name || !payload.role || !payload.organisation || !EMAIL_RE.test(payload.email)) {
+          errorBox.textContent = 'Please complete every field with a valid email address.';
+          errorBox.classList.add('visible');
+          return;
+        }
+
+        setLoading(true);
+
+        fetch(BROCHURE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function (res) {
+          if (!res.ok) throw new Error('Request failed');
+          return res.json();
+        }).then(function (data) {
+          if (!data || !data.ok) throw new Error('Request failed');
+          form.style.display = 'none';
+          successBox.classList.add('visible');
+        }).catch(function () {
+          setLoading(false);
+          // Restore the default error copy (it may have been overwritten by client validation above).
+          errorBox.innerHTML = 'Something went wrong sending your request. Please try again, or email us directly at ' +
+            '<a href="mailto:arslan@arslaninstitute.com">arslan@arslaninstitute.com</a>.';
+          errorBox.classList.add('visible');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

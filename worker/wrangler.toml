@@ -1,0 +1,11 @@
+name = "arslan-brochure"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+# Secrets are NOT stored here. Set them with:
+#   wrangler secret put RESEND_API_KEY
+#   wrangler secret put FROM_EMAIL
+#   wrangler secret put NOTIFY_EMAIL
+#   wrangler secret put BROCHURE_URL
+# For local `wrangler dev`, put the same keys in worker/.dev.vars (git-ignored;
+# copy worker/.dev.vars.example). Allowed CORS origins are configured in src/index.js.

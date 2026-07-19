@@ -2,6 +2,11 @@ node_modules/
 .vercel/
 .DS_Store
 
+# Secrets: real env values must never be committed (examples are tracked)
+.env
+worker/.dev.vars
+worker/.wrangler/
+
 # Video assets are hosted on Cloudflare R2, not committed to git
 *.mp4
 

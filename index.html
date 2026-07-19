@@ -1219,6 +1219,14 @@
     }
     .view-hero-icon svg { width: 34px; height: 34px; stroke: var(--amber); fill: none; }
     .view-hero .t-heading .keyword { color: var(--amber); }
+    .view-hero .t-label { margin-bottom: 14px; }
+    .view-hero-note {
+      margin-top: 12px;
+      font-size: 0.95rem;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
     .view-hero-sub {
       margin-top: 18px;
       font-size: 1.0625rem;
@@ -1371,7 +1379,7 @@
         <div class="nav-inner">
           <a href="index.html" class="nav-wordmark" aria-label="Arslan Institute home">Arslan Institute</a>
           <div class="nav-links" aria-label="Site sections">
-            <a href="#programmes" class="nav-link" data-persona-link="teachers">For teachers</a>
+            <a href="#programmes" class="nav-link" data-persona-link="teachers">For schools</a>
             <a href="#programmes" class="nav-link" data-persona-link="parents">For parents</a>
             <a href="#programmes" class="nav-link" data-persona-link="uni">For university</a>
             <a href="#professionals" class="nav-link" data-persona-link="professionals">For professionals</a>
@@ -1413,15 +1421,16 @@
         </div>
 
         <div class="switcher fade-up">
+          <!-- Persona display label is "For Schools"; internal slug/id stays "teachers" to preserve existing URLs (#for-teachers), view ids, JS state and enquiry-form keys. -->
           <div class="persona-switch" role="tablist" aria-label="Choose who this is for">
-            <button type="button" class="persona-pill" role="tab" id="tab-teachers" data-persona="teachers" aria-selected="true" aria-controls="view-teachers-teacher">For Teachers</button>
+            <button type="button" class="persona-pill" role="tab" id="tab-teachers" data-persona="teachers" aria-selected="true" aria-controls="view-teachers-teacher">For Schools</button>
             <button type="button" class="persona-pill" role="tab" id="tab-parents" data-persona="parents" aria-selected="false" aria-controls="view-parents">For Parents</button>
             <button type="button" class="persona-pill" role="tab" id="tab-uni" data-persona="uni" aria-selected="false" aria-controls="view-uni">For University Students</button>
             <button type="button" class="persona-pill" role="tab" id="tab-professionals" data-persona="professionals" aria-selected="false" aria-controls="professionals">For Professionals</button>
           </div>
 
           <div class="subswitch" id="teacher-subswitch">
-            <div class="subswitch-inner" role="tablist" aria-label="Choose the focus for teachers">
+            <div class="subswitch-inner" role="tablist" aria-label="Choose the focus for schools">
               <button type="button" class="subpill" role="tab" id="subtab-teacher" data-teacher-mode="teacher" aria-selected="true" aria-controls="view-teachers-teacher">Teach the Teacher</button>
               <button type="button" class="subpill" role="tab" id="subtab-student" data-teacher-mode="student" aria-selected="false" aria-controls="view-teachers-student">Teach the Student</button>
             </div>
@@ -1585,8 +1594,14 @@
               <div class="view-hero-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10c.7.7 1 1.3 1 2h6c0-.7.3-1.3 1-2a6 6 0 0 0-4-10z"/></svg>
               </div>
+              <p class="t-label">Teach the Teacher</p>
               <h3 class="t-heading">AI fluency for <span class="keyword">educators</span>.</h3>
-              <p class="view-hero-sub">Professional development that gives teachers the confidence to guide students towards using AI well, deepening their learning and building responsible habits, in an AI-shaped classroom.</p>
+              <p class="view-hero-note">Built around the DfE&rsquo;s &ldquo;Safe and Effective Use of AI in Education&rdquo; framework.</p>
+              <p class="view-hero-sub">Professional development that gives teachers the confidence to guide students towards using AI well, deepening their learning and building responsible habits in an AI-shaped classroom.</p>
+            </div>
+
+            <div class="view-cta">
+              <a href="schools/brochure/" class="btn btn-amber btn-lift">Get the brochure <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
             </div>
 
             <div class="view-section">
@@ -1613,12 +1628,12 @@
                 <article class="outcome-item" role="listitem">
                   <p class="outcome-number" aria-hidden="true">1</p>
                   <h3 class="outcome-title">Use AI to deepen understanding, not shortcut it</h3>
-                  <p class="outcome-desc">See first-hand how AI, used well, helps students genuinely grasp a topic rather than skip the thinking, mapped to each stage of learning, from first understanding to retrieval practice and feedback.</p>
+                  <p class="outcome-desc">See first-hand how AI, used well, helps students properly grasp a topic rather than skip the thinking, mapped to each stage of learning from first understanding through retrieval practice, spacing and feedback.</p>
                 </article>
                 <article class="outcome-item" role="listitem">
                   <p class="outcome-number" aria-hidden="true">2</p>
-                  <h3 class="outcome-title">Get students wanting to use AI well</h3>
-                  <p class="outcome-desc">Leave with concrete techniques that make understanding-led use more rewarding than copy-paste, so good habits come from motivation, not just rules and warnings.</p>
+                  <h3 class="outcome-title">Get students choosing to use AI well</h3>
+                  <p class="outcome-desc">Leave with concrete techniques that make understanding-led use more rewarding than copy-paste, so good habits come from motivation, not rules and warnings alone.</p>
                 </article>
                 <article class="outcome-item" role="listitem">
                   <p class="outcome-number" aria-hidden="true">3</p>
@@ -1628,61 +1643,86 @@
                 <article class="outcome-item" role="listitem">
                   <p class="outcome-number" aria-hidden="true">4</p>
                   <h3 class="outcome-title">A balanced, evidence-aware stance</h3>
-                  <p class="outcome-desc">Understand where AI genuinely helps and where it fails, grounded in current research on AI and learning rather than hype or fear, including what &ldquo;cognitive debt&rdquo; means for your classroom.</p>
+                  <p class="outcome-desc">Understand where AI helps and where it fails, grounded in current research on AI and learning rather than hype or fear, including what &ldquo;cognitive debt&rdquo; means for your classroom.</p>
                 </article>
                 <article class="outcome-item" role="listitem">
                   <p class="outcome-number" aria-hidden="true">5</p>
-                  <h3 class="outcome-title">AI-resilient tasks &amp; assessment</h3>
-                  <p class="outcome-desc">Design lessons and assessments that stay meaningful in a world of AI, with practical alternatives to the unreliable detection tools and outright bans most schools fall back on.</p>
+                  <h3 class="outcome-title">Clear, confident data handling</h3>
+                  <p class="outcome-desc">Know exactly what is and is not safe to enter into an AI tool: pupil names, SEND and medical information, safeguarding details and personal data, and why the school&rsquo;s licensed tools are the right environment for the work. Delivered by a registered pharmacist used to handling sensitive data under regulation.</p>
                 </article>
                 <article class="outcome-item" role="listitem">
                   <p class="outcome-number" aria-hidden="true">6</p>
-                  <h3 class="outcome-title">Practical tools you keep</h3>
-                  <p class="outcome-desc">A take-home kit you can use straight away: a personal library of prompts; a one-page map of which AI tool suits each stage of learning; a quick checklist for sense-checking anything AI produces; and ready-to-adapt classroom guidance and a simple AI-use policy. Plus a completion certificate.</p>
+                  <h3 class="outcome-title">AI-resilient tasks and assessment</h3>
+                  <p class="outcome-desc">Design lessons and assessments that stay meaningful in a world of AI, with practical alternatives to the detection tools and outright bans most schools fall back on.</p>
                 </article>
-                <!-- OPTIONAL A/B-TEST CARD (teacher productivity): leave commented out; do not display by default
                 <article class="outcome-item" role="listitem">
                   <p class="outcome-number" aria-hidden="true">7</p>
-                  <h3 class="outcome-title">Time back, quality in your hands</h3>
-                  <p class="outcome-desc">Draft plans, resources and feedback faster, with you firmly in control of quality.</p>
+                  <h3 class="outcome-title">Practical tools you keep</h3>
+                  <p class="outcome-desc">A take-home kit you can use straight away: a personal subject action plan; a prompt guide built on the DfE&rsquo;s FACTS framework; a one-page map of which AI tool suits each stage of learning; a verification checklist for sense-checking anything AI produces; a student AI maturity guide; and a classroom AI agreement drafted by your own staff. Plus an AI fluency completion certificate.</p>
                 </article>
-                -->
               </div>
             </div>
 
             <div class="view-section">
               <div class="view-section-head">
-                <p class="t-label">The workshop</p>
-                <h4 class="t-heading">A practical workshop for teaching staff.</h4>
-                <p class="t-body">One focused, hands-on session built around using AI to deepen student learning, guide it responsibly, and handle the everyday realities of teaching. Practical, not abstract theory.</p>
+                <p class="t-label">The programme</p>
+                <h4 class="t-heading">One programme, matched to your staff.</h4>
+                <p class="t-body">A hands-on programme built around using AI to deepen student learning, guide it responsibly, and handle the everyday realities of teaching. It covers and extends the DfE&rsquo;s four official AI training modules, so your school can evidence alignment with government guidance directly. Practical, not abstract theory.</p>
               </div>
               <div class="workshop-layout">
                 <aside class="format-card" aria-labelledby="teacher-format-heading">
-                  <h3 class="format-card-title" id="teacher-format-heading">Workshop format</h3>
+                  <h3 class="format-card-title" id="teacher-format-heading">Format at a glance</h3>
                   <ul class="format-list">
-                    <li><span class="format-term">Format</span><span class="format-value">Hands-on staff workshop</span></li>
-                    <li><span class="format-term">Length</span><span class="format-value">A focused session, scheduled to suit your school</span></li>
-                    <li><span class="format-term">Audience</span><span class="format-value">Teaching staff, departments, or whole-staff INSET</span></li>
-                    <li><span class="format-term">Delivery</span><span class="format-value">In person, with online options by arrangement</span></li>
-                    <li><span class="format-term">Approach</span><span class="format-value">Principles teachers can apply to their own subjects and key stages</span></li>
+                    <li><span class="format-term">Format</span><span class="format-value">Hands-on staff workshop, delivered on your school&rsquo;s own licensed tools</span></li>
+                    <li><span class="format-term">Length</span><span class="format-value">From a one-hour session to a full INSET day; a half day is the recommended standard for most schools</span></li>
+                    <li><span class="format-term">Levels</span><span class="format-value">Four starting points, from digital foundations to an agents masterclass, matched by a short pre-workshop survey</span></li>
+                    <li><span class="format-term">Audience</span><span class="format-value">Teaching staff, departments, or whole-staff INSET; mixed cohorts across schools by arrangement</span></li>
+                    <li><span class="format-term">Technology</span><span class="format-value">Microsoft Copilot, or Google Gemini and NotebookLM, inside the school&rsquo;s licensed environment</span></li>
+                    <li><span class="format-term">Delivery</span><span class="format-value">In person by default; remote available, and well suited to the shorter formats</span></li>
                     <li><span class="format-term">Outcome</span><span class="format-value">Staff confident to use AI to deepen learning, and to guide students to do the same</span></li>
                   </ul>
                 </aside>
                 <div>
                   <h3 class="workshop-flex-heading">What the workshop covers</h3>
-                  <p class="workshop-flex-intro">A single, practical session designed to leave every member of staff more confident and better equipped, whatever their starting point.</p>
+                  <p class="workshop-flex-intro">The full menu below is the complete programme. Each session is drawn from it to fit your staff, guided by the pre-workshop survey.</p>
                   <div class="benefits-grid" role="list">
-                    <article class="benefit-card" role="listitem"><h4 class="card-title">How AI really works</h4><p>A plain-English foundation: what AI and AI agents actually are, and why they get things wrong, so staff can judge any tool.</p></article>
-                    <article class="benefit-card" role="listitem"><h4 class="card-title">AI across the learning journey</h4><p>Applying AI to the real stages of learning, retrieval, spacing and feedback, so it strengthens memory rather than replacing it.</p></article>
-                    <article class="benefit-card" role="listitem"><h4 class="card-title">Responsible and safe use</h4><p>The wider responsible-AI picture: handling data sensibly, recognising bias and hallucination, thinking critically about AI-generated content, and modelling honest, transparent use for students.</p></article>
-                    <article class="benefit-card" role="listitem"><h4 class="card-title">AI-resilient assessment</h4><p>Designing tasks and assessments that stay meaningful, without relying on detection tools that are demonstrably unreliable.</p></article>
-                    <article class="benefit-card" role="listitem"><h4 class="card-title">The future-ready classroom</h4><p>The durable human skills, critical thinking, communication, problem-solving, that matter more as AI spreads.</p></article>
-                    <article class="benefit-card" role="listitem"><h4 class="card-title">From shortcut to understanding</h4><p>Practical techniques to get students choosing to learn with AI, rather than leaning on it to cut corners.</p></article>
+                    <article class="benefit-card" role="listitem"><h4 class="card-title">How AI really works.</h4><p>A plain-English foundation: what AI and AI agents actually are, and why they produce confident errors, so staff can judge any tool.</p></article>
+                    <article class="benefit-card" role="listitem"><h4 class="card-title">Everyday AI for workload.</h4><p>The practical, time-saving uses: drafting communications, lesson planning, differentiating resources, generating quizzes, and support with feedback and report comments, within clear data-protection guardrails.</p></article>
+                    <article class="benefit-card" role="listitem"><h4 class="card-title">Prompting well, and spotting errors.</h4><p>The DfE&rsquo;s FACTS prompting framework, plus a simple, repeatable routine for verifying any AI output, designed to be taught onwards to students.</p></article>
+                    <article class="benefit-card" role="listitem"><h4 class="card-title">AI across the learning journey.</h4><p>Matching your school&rsquo;s approved tools to the real stages of learning, encoding, retrieval, spacing and feedback, so AI strengthens memory rather than replacing it.</p></article>
+                    <article class="benefit-card" role="listitem"><h4 class="card-title">Inclusion and accessibility.</h4><p>Using AI to widen access: adjusting reading age, supporting EAL learners, converting between text and audio, always within pupils&rsquo; plans and the right safeguards.</p></article>
+                    <article class="benefit-card" role="listitem"><h4 class="card-title">Responsible, safe and ethical use.</h4><p>Structured on the DfE&rsquo;s five key risks, with a candid account of why detection tools cannot be relied on and what to do instead.</p></article>
+                    <article class="benefit-card" role="listitem"><h4 class="card-title">The future-ready classroom.</h4><p>The durable human skills, critical thinking, communication, problem-solving, that matter more as AI takes on routine work.</p></article>
+                    <article class="benefit-card" role="listitem"><h4 class="card-title">From shortcut to understanding, into practice.</h4><p>Practical techniques to get students choosing to learn with AI, ending with a subject action plan of two or three specific moves for next term.</p></article>
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div class="view-section">
+              <div class="view-section-head">
+                <p class="t-label">Set the right level</p>
+                <h4 class="t-heading">We start where your staff are.</h4>
+                <p class="t-body">Ahead of any session, staff complete a short, anonymous AI Maturity Survey, under five minutes. It sets the right level for your staff, shapes the session around the concerns they actually raise, and gives a baseline. Delivered via Google or Microsoft Forms, or your school&rsquo;s usual tool.</p>
+              </div>
+            </div>
+
+            <div class="view-section">
+              <div class="view-section-head">
+                <p class="t-label">Measure the impact</p>
+                <h4 class="t-heading">Evidence leadership and governors can use.</h4>
+                <p class="t-body">The survey is repeated a term after delivery, so you can show before-and-after movement in staff confidence, adoption, and data-protection understanding. Administered across several schools, the same survey gives a borough-wide picture of where schools sit and which would benefit from which level.</p>
+              </div>
+            </div>
+
+            <div class="view-section">
+              <div class="view-section-head">
+                <h4 class="t-heading">Bring this to your school.</h4>
+                <p class="t-body">Get a detailed brochure covering every level and format, ready to share with your leadership team. We&rsquo;ll follow up with a couple of suggested times to talk.</p>
+              </div>
               <div class="view-cta">
-                <a href="#contact" class="btn btn-amber btn-lift">Enquire about teacher training <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+                <!-- Standalone, shareable capture page. Public path uses /schools to match the "For Schools" persona label; the internal JS persona slug remains "teachers" for URL back-compatibility. -->
+                <a href="schools/brochure/" class="btn btn-amber btn-lift">Send me the brochure <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
               </div>
             </div>
           </div>
@@ -2165,7 +2205,7 @@
         <div class="footer-right">
           <p class="footer-contact"><a href="mailto:arslan@arslaninstitute.com">arslan@arslaninstitute.com</a></p>
           <div class="footer-links">
-            <a href="#programmes" data-persona-link="teachers">For teachers</a>
+            <a href="#programmes" data-persona-link="teachers">For schools</a>
             <a href="#programmes" data-persona-link="parents">For parents</a>
             <a href="#programmes" data-persona-link="uni">For university</a>
             <a href="#professionals" data-persona-link="professionals">For professionals</a>
@@ -2213,6 +2253,7 @@
         'professionals': 'for-professionals'
       };
       var hashToState = {
+        'for-schools': { persona: 'teachers', teacherMode: 'teacher' },
         'for-teachers': { persona: 'teachers', teacherMode: 'teacher' },
         'teach-the-student': { persona: 'teachers', teacherMode: 'student' },
         'teach-the-teacher': { persona: 'teachers', teacherMode: 'teacher' },
