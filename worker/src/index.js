@@ -136,6 +136,36 @@ function notifyEmailHtml(lead) {
 </html>`;
 }
 
+// Plain-text alternatives. Sending multipart (text + html) improves deliverability;
+// HTML-only messages are more likely to be filtered as spam.
+function brochureEmailText(name, brochureUrl) {
+  return `Hello ${name},
+
+Thank you for requesting the Arslan Institute programme brochure. It provides a detailed overview of the key workshops for teachers and students, which can be tailored for school and teacher needs.
+
+You can read and download it here:
+${brochureUrl}
+
+Arslan will be in touch shortly with a couple of suggested times to talk. If it is easier, just reply to this email and it will reach him directly.
+
+Best wishes,
+Arslan Institute
+
+Arslan Institute, London. AI fluency workshops for schools.`;
+}
+
+function notifyEmailText(lead) {
+  return `New brochure request
+
+Name: ${lead.full_name}
+Role: ${lead.role}
+Organisation: ${lead.organisation}
+Email: ${lead.email}
+Submitted: ${lead.timestamp}
+
+Reply to this email to respond straight to the lead.`;
+}
+
 // --- Resend -----------------------------------------------------------------
 
 async function sendEmail(apiKey, message) {
@@ -207,22 +237,30 @@ export default {
       timeStyle: 'short',
     });
 
+    // A friendly display name reads better and helps deliverability. The address must
+    // still be on the verified sending domain (FROM_EMAIL).
+    const fromAddress = `Arslan Institute <${FROM_EMAIL}>`;
+
     // Email A: brochure to the visitor. Reply-to Arslan's branded address so replies reach him.
     const brochureEmail = {
-      from: FROM_EMAIL,
+      from: fromAddress,
       to: email,
       reply_to: BROCHURE_REPLY_TO,
       subject: 'Your Arslan Institute programme brochure',
       html: brochureEmailHtml(full_name, BROCHURE_URL),
+      text: brochureEmailText(full_name, BROCHURE_URL),
+      // A valid unsubscribe path improves inbox placement (Gmail/Yahoo favour it).
+      headers: { 'List-Unsubscribe': '<mailto:arslan@arslaninstitute.com?subject=unsubscribe>' },
     };
 
     // Email B: notification to Arslan. Reply-to the visitor so he can reply to the lead.
     const notifyEmail = {
-      from: FROM_EMAIL,
+      from: fromAddress,
       to: notifyTo,
       reply_to: email,
       subject: `New brochure request: ${organisation}`,
       html: notifyEmailHtml({ full_name, role, organisation, email, timestamp }),
+      text: notifyEmailText({ full_name, role, organisation, email, timestamp }),
     };
 
     try {
