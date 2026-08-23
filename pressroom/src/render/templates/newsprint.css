@@ -1,0 +1,494 @@
+/*
+ * Newsprint. Greyscale only, on purpose: newsprint is absorbent and low
+ * contrast, colour reproduces unpredictably on it, and every print shop
+ * accepts greyscale. Large solid blacks bleed and cockle the sheet, so
+ * there are no filled panels here — the paper does the white, rules and
+ * type do the structure.
+ *
+ * Page geometry is injected at render time from the layout config.
+ */
+
+/* The @page rule itself is emitted by the renderer: page descriptors do not
+   read custom properties, so the millimetre values have to be literal. */
+
+:root {
+  --ink: #16161a;
+  --ink-soft: #4a4a52;
+  --rule: #16161a;
+  --rule-hair: rgba(22, 22, 26, 0.35);
+  --serif: "Liberation Serif", "Times New Roman", Times, "DejaVu Serif", serif;
+  --sans: "Liberation Sans", Helvetica, Arial, "DejaVu Sans", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  /* The renderer sets the real page box; this keeps preview-in-browser sane. */
+  background: #fff;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font-family: var(--serif);
+  font-size: var(--body-size);
+  line-height: var(--body-leading);
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  orphans: 2;
+  widows: 2;
+}
+
+/* ---------------------------------------------------------------- front page */
+
+.frontpage {
+  break-after: page;
+}
+
+.nameplate {
+  border-bottom: 3px solid var(--rule);
+  padding-bottom: 3mm;
+  margin-bottom: 2mm;
+  text-align: center;
+}
+
+.nameplate h1 {
+  font-family: var(--serif);
+  font-weight: 700;
+  /* Size is set inline, fitted to the measure by the renderer. */
+  line-height: 0.9;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.nameplate .strapline {
+  font-family: var(--sans);
+  font-size: 10pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-top: 3mm;
+  color: var(--ink-soft);
+}
+
+.folio-bar {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--sans);
+  font-size: 8pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.5mm;
+  margin-bottom: 6mm;
+}
+
+.frontpage-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 8mm;
+  align-items: start;
+}
+
+.editors-note h2,
+.contents h2 {
+  font-family: var(--sans);
+  font-size: 9pt;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.5mm;
+  margin: 0 0 3mm;
+}
+
+.editors-note p {
+  font-size: 12pt;
+  line-height: 1.5;
+  margin: 0 0 3mm;
+  text-indent: 0;
+}
+
+.editors-note.has-dropcap p:first-of-type::first-letter {
+  float: left;
+  font-size: 42pt;
+  line-height: 0.82;
+  padding: 1mm 1.5mm 0 0;
+  font-weight: 700;
+}
+
+.contents ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 9.5pt;
+  line-height: 1.35;
+  text-align: left;
+}
+
+.contents li {
+  display: grid;
+  grid-template-columns: 6mm 1fr;
+  gap: 1.5mm;
+  padding: 1.6mm 0;
+  border-bottom: 1px solid var(--rule-hair);
+}
+
+.contents .num {
+  font-family: var(--sans);
+  font-size: 8pt;
+  color: var(--ink-soft);
+}
+
+.contents .title {
+  font-weight: 700;
+}
+
+.contents .meta {
+  font-family: var(--sans);
+  font-size: 7.5pt;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: block;
+  margin-top: 0.6mm;
+}
+
+.stats-strip {
+  font-family: var(--sans);
+  font-size: 7.5pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align: left;
+  margin: 3mm 0 0;
+}
+
+.lead-band {
+  margin-top: 8mm;
+  padding-top: 4mm;
+  border-top: 3px solid var(--rule);
+  break-inside: avoid;
+}
+
+.lead-band .kicker {
+  display: block;
+  font-family: var(--sans);
+  font-size: 8pt;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.lead-band h2 {
+  font-size: 40pt;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  margin: 2mm 0;
+  text-align: left;
+  hyphens: none;
+}
+
+.lead-band .standfirst {
+  font-style: italic;
+  font-size: 13pt;
+  line-height: 1.32;
+  margin: 0 0 2.5mm;
+  text-align: left;
+  hyphens: none;
+}
+
+/* ------------------------------------------------------------------ articles */
+
+.section-head {
+  font-family: var(--sans);
+  font-size: 9pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-top: 2px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.5mm 0;
+  margin: 0 0 4mm;
+  break-after: avoid;
+  break-inside: avoid;
+}
+
+.piece {
+  margin: 0 0 7mm;
+  padding-bottom: 5mm;
+  border-bottom: 1px solid var(--rule-hair);
+}
+
+.piece:last-child {
+  border-bottom: 0;
+}
+
+.piece-head {
+  break-inside: avoid;
+  break-after: avoid;
+  margin-bottom: 3.5mm;
+}
+
+.piece h2 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 30pt;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  margin: 0 0 2mm;
+  text-align: left;
+  hyphens: none;
+}
+
+.piece--lead h2 {
+  font-size: 46pt;
+}
+
+.piece .standfirst {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13pt;
+  line-height: 1.32;
+  margin: 0 0 2.5mm;
+  text-align: left;
+  color: var(--ink);
+  hyphens: none;
+}
+
+.byline {
+  font-family: var(--sans);
+  font-size: 8pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--rule-hair);
+  border-bottom: 1px solid var(--rule-hair);
+  padding: 1.2mm 0;
+  text-align: left;
+}
+
+.piece-body {
+  column-count: var(--columns);
+  column-gap: var(--column-gap);
+  column-rule: 1px solid var(--rule-hair);
+  margin-top: 3.5mm;
+}
+
+.piece-body p {
+  margin: 0;
+  text-indent: 4mm;
+}
+
+.piece-body p:first-of-type {
+  text-indent: 0;
+}
+
+.piece-body p:first-of-type::first-letter {
+  float: left;
+  font-size: 30pt;
+  line-height: 0.8;
+  padding: 0.6mm 1.2mm 0 0;
+  font-weight: 700;
+}
+
+.piece--card .piece-body p:first-of-type::first-letter {
+  float: none;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0;
+  font-weight: inherit;
+}
+
+blockquote.pull {
+  break-inside: avoid;
+  margin: 3mm 0;
+  padding: 2.5mm 0;
+  border-top: 2px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-size: 15pt;
+  line-height: 1.2;
+  font-weight: 700;
+  text-align: left;
+  hyphens: none;
+  text-indent: 0;
+}
+
+.continues {
+  break-inside: avoid;
+  margin-top: 3mm;
+  padding-top: 2mm;
+  border-top: 1px solid var(--rule-hair);
+  font-family: var(--sans);
+  font-size: 8pt;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  text-align: left;
+  color: var(--ink-soft);
+  text-indent: 0;
+}
+
+/* --------------------------------------------------------------------- cards */
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6mm;
+  align-items: start;
+}
+
+.piece--card {
+  break-inside: avoid;
+  border: 1px solid var(--rule);
+  border-top-width: 3px;
+  padding: 4mm;
+  margin: 0;
+}
+
+.piece--card.piece--wide {
+  grid-column: 1 / -1;
+}
+
+.piece--card h2 {
+  font-size: 19pt;
+}
+
+.piece--card.piece--wide h2 {
+  font-size: 26pt;
+}
+
+.piece--card .standfirst {
+  font-size: 10.5pt;
+}
+
+.piece--card .piece-body {
+  column-count: 1;
+  column-rule: 0;
+}
+
+.piece--card.piece--wide .piece-body {
+  column-count: 2;
+}
+
+.piece--card .piece-body p {
+  text-indent: 0;
+  margin-bottom: 2mm;
+}
+
+.card-foot {
+  break-inside: avoid;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3mm;
+  align-items: start;
+  margin-top: 3mm;
+  padding-top: 2mm;
+  border-top: 1px solid var(--rule);
+}
+
+.card-foot .where {
+  font-family: var(--sans);
+  font-size: 7.5pt;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  text-align: left;
+  color: var(--ink-soft);
+  word-break: break-word;
+}
+
+.qr {
+  width: 22mm;
+  height: 22mm;
+}
+
+.qr svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* QR modules must stay crisp; no anti-aliased scaling. */
+  shape-rendering: crispEdges;
+}
+
+.qr-caption {
+  font-family: var(--sans);
+  font-size: 6.5pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 1mm;
+  color: var(--ink-soft);
+}
+
+/* --------------------------------------------------------------- back matter */
+
+.backmatter {
+  break-before: page;
+}
+
+.spike-list {
+  column-count: 2;
+  column-gap: var(--column-gap);
+  font-size: 9pt;
+  line-height: 1.35;
+  text-align: left;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.spike-list li {
+  break-inside: avoid;
+  padding: 1.6mm 0;
+  border-bottom: 1px solid var(--rule-hair);
+}
+
+.spike-list .title {
+  font-weight: 700;
+}
+
+.spike-list .reason {
+  font-family: var(--sans);
+  font-size: 7.5pt;
+  color: var(--ink-soft);
+  display: block;
+}
+
+.colophon {
+  break-inside: avoid;
+  margin-top: 6mm;
+  padding-top: 3mm;
+  border-top: 2px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 8pt;
+  line-height: 1.5;
+  text-align: left;
+  color: var(--ink-soft);
+}
+
+.notes-page {
+  break-before: page;
+  height: var(--text-height);
+}
+
+.notes-page h2 {
+  font-family: var(--sans);
+  font-size: 9pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.5mm;
+  margin: 0 0 6mm;
+}
+
+.rules {
+  display: grid;
+  gap: 9mm;
+}
+
+.rules div {
+  border-bottom: 1px solid var(--rule-hair);
+}

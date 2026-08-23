@@ -1,0 +1,7 @@
+node_modules/
+dist/
+out/
+.env
+capture/worker/.dev.vars
+capture/worker/.wrangler/
+capture/worker/node_modules/

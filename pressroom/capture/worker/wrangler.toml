@@ -1,0 +1,16 @@
+name = "pressroom-inbox"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+# Secrets (set with `wrangler secret put <NAME> --config capture/worker/wrangler.toml`):
+#   INBOX_TOKEN     - the shared bearer token your phone sends. Generate with
+#                     `openssl rand -hex 32`. The pipeline uses the same value.
+#   READWISE_TOKEN  - optional. When set, every save is mirrored into Readwise
+#                     Reader so you get its reader UI as well as this inbox.
+
+[[d1_databases]]
+binding = "DB"
+database_name = "pressroom-inbox"
+# Replace with the id printed by:
+#   wrangler d1 create pressroom-inbox
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"

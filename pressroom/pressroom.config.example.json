@@ -1,0 +1,55 @@
+{
+  "masthead": "The Arslan Review",
+  "motto": "Everything worth keeping from the month just gone",
+  "firstIssueNumber": 1,
+  "firstIssueMonth": "2026-09",
+  "timezone": "Europe/London",
+
+  "sources": {
+    "readwise": {
+      "enabled": true,
+      "locations": ["new", "later", "shortlist", "archive"],
+      "withHtmlContent": true
+    },
+    "inbox": {
+      "enabled": false,
+      "endpoint": "https://pressroom-inbox.YOUR-SUBDOMAIN.workers.dev"
+    }
+  },
+
+  "curation": {
+    "maxPieces": 14,
+    "minPieces": 5,
+    "pageBudget": 24,
+    "maxPerKind": { "video": 3, "post": 3, "thread": 2 },
+    "model": "claude-opus-5",
+    "effort": "high",
+    "alwaysPrintTags": ["print", "must-read"],
+    "neverPrintTags": ["skip", "reference"],
+    "tasteNotes": "Rewrite this in your own words — it is the highest-leverage setting in the file. Say what you actually want to read on paper and what you always regret printing. For example: I want arguments and reported pieces about education, AI in the classroom, and how institutions actually change. I do not want product launches, funding news, or anything whose value is that it is new."
+  },
+
+  "layout": {
+    "pageWidthMm": 289,
+    "pageHeightMm": 380,
+    "marginMm": 15,
+    "columns": 4,
+    "bodyPt": 9.8,
+    "leadingPt": 13.2,
+    "minPages": 4,
+    "maxPages": 32,
+    "pageMultiple": 4
+  },
+
+  "print": {
+    "vendor": "newspaperclub",
+    "copies": 1,
+    "colour": "greyscale",
+    "outDir": "out"
+  },
+
+  "delivery": {
+    "proofEmail": "you@example.com",
+    "fromEmail": "paper@yourdomain.com"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "pressroom",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Capture links from your phone all month; print one curated newspaper.",
+  "bin": {
+    "pressroom": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "pressroom": "tsx src/cli.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "worker:dev": "wrangler dev --config capture/worker/wrangler.toml",
+    "worker:deploy": "wrangler deploy --config capture/worker/wrangler.toml"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.120.0",
+    "@mozilla/readability": "^0.6.0",
+    "jsdom": "^26.0.0",
+    "pdf-lib": "^1.17.1",
+    "playwright": "^1.50.0",
+    "qrcode": "^1.5.4",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.10.0",
+    "@types/qrcode": "^1.5.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "wrangler": "^3.100.0"
+  }
+}

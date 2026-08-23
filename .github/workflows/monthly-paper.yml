@@ -1,0 +1,129 @@
+name: Monthly paper
+
+# The whole ritual: on the 1st, build last month's issue, email you a proof,
+# then wait. Nothing is ordered until you approve the `print-approval`
+# environment, which is the one action this system asks of you.
+on:
+  schedule:
+    - cron: "0 8 1 * *"
+  workflow_dispatch:
+    inputs:
+      month:
+        description: "Month to print as YYYY-MM (default: last month)"
+        required: false
+        type: string
+      no-ai:
+        description: "Skip the model and rank with the plain heuristic"
+        required: false
+        type: boolean
+        default: false
+
+defaults:
+  run:
+    working-directory: pressroom
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    outputs:
+      month: ${{ steps.build.outputs.month }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: pressroom/package-lock.json
+
+      - run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Install Ghostscript
+        run: sudo apt-get update && sudo apt-get install -y ghostscript
+
+      - name: Build the issue
+        id: build
+        env:
+          READWISE_TOKEN: ${{ secrets.READWISE_TOKEN }}
+          INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          # The proof email links straight back to the approval button.
+          APPROVAL_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          MONTH="${{ inputs.month }}"
+          if [ -z "$MONTH" ]; then MONTH=$(date -u -d "last month" +%Y-%m); fi
+          echo "month=$MONTH" >> "$GITHUB_OUTPUT"
+          npm run pressroom -- run --month "$MONTH" ${{ inputs.no-ai && '--no-ai' || '' }}
+
+      - name: Summarise the issue
+        if: always()
+        run: |
+          MONTH="${{ steps.build.outputs.month }}"
+          {
+            echo "## Issue for $MONTH"
+            echo
+            if [ -f "out/issue-$MONTH.json" ]; then
+              node -e '
+                const issue = require(`./out/issue-${process.argv[1]}.json`);
+                console.log(`**${issue.masthead}** No. ${issue.number} — ${issue.pageCount} pages, ${issue.pieces.length} pieces\n`);
+                for (const [i, p] of issue.pieces.entries()) {
+                  console.log(`${i + 1}. **${p.headline}** — _${p.verdict.section}_ · ${p.verdict.pitch}`);
+                }
+                console.log(`\n${issue.spike.length} spiked.`);
+              ' "$MONTH"
+            else
+              echo "No issue was produced. Check the build log."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: issue-${{ steps.build.outputs.month }}
+          path: |
+            pressroom/out/issue-*.print.pdf
+            pressroom/out/issue-*.proof.pdf
+            pressroom/out/issue-*.json
+          retention-days: 90
+          if-no-files-found: warn
+
+  order:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Add yourself as a required reviewer on this environment. Approving it
+    # in the GitHub UI is the "yes, print it" step; ignore it and nothing
+    # is printed and nothing is spent.
+    environment: print-approval
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: pressroom/package-lock.json
+
+      - run: npm ci
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: issue-${{ needs.build.outputs.month }}
+          path: pressroom/out
+
+      - name: Place the order
+        env:
+          PEECHO_API_KEY: ${{ secrets.PEECHO_API_KEY }}
+          PEECHO_MERCHANT_ID: ${{ secrets.PEECHO_MERCHANT_ID }}
+          PUBLIC_ASSET_BASE: ${{ vars.PUBLIC_ASSET_BASE }}
+        run: |
+          npm run pressroom -- order --month "${{ needs.build.outputs.month }}" \
+            | tee -a "$GITHUB_STEP_SUMMARY"
