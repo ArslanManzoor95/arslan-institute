@@ -53,6 +53,7 @@ jobs:
         env:
           READWISE_TOKEN: ${{ secrets.READWISE_TOKEN }}
           INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           # The proof email links straight back to the approval button.

@@ -179,12 +179,29 @@ async function doctor(config: Config, secrets: Secrets) {
 
   const readwise = config.sources.readwise.enabled;
   const inbox = config.sources.inbox.enabled;
+  const email = config.sources.email.enabled;
   rows.push([
     "a source is enabled",
-    readwise || inbox,
-    [readwise ? "readwise" : null, inbox ? "inbox" : null].filter(Boolean).join(" + ") ||
-      "none — edit sources in pressroom.config.json",
+    readwise || inbox || email,
+    [readwise ? "readwise" : null, email ? "email" : null, inbox ? "inbox" : null]
+      .filter(Boolean)
+      .join(" + ") || "none — edit sources in pressroom.config.json",
   ]);
+  if (email) {
+    rows.push([
+      "EMAIL_PASSWORD",
+      Boolean(secrets.emailPassword),
+      secrets.emailPassword
+        ? `${config.sources.email.user ?? "?"} · ${config.sources.email.mailbox}` +
+          (config.sources.email.toFilter ? ` · to *${config.sources.email.toFilter}*` : "")
+        : "an app password, not your account password",
+    ]);
+    rows.push([
+      "email user",
+      Boolean(config.sources.email.user),
+      config.sources.email.user ?? "sources.email.user is unset",
+    ]);
+  }
   if (readwise) {
     rows.push(["READWISE_TOKEN", Boolean(secrets.readwiseToken), "readwise.io/access_token"]);
   }

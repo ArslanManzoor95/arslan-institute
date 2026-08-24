@@ -96,6 +96,29 @@ const SourcesSchema = z.object({
       endpoint: z.string().url().optional(),
     })
     .prefault({}),
+  /**
+   * Forward a link to an address and it is captured. Nothing to deploy and
+   * nothing to install, at the cost of a mailbox password in your secrets.
+   * Read-only: the pipeline never modifies the mailbox.
+   */
+  email: z
+    .object({
+      enabled: z.boolean().default(false),
+      host: z.string().default("imap.gmail.com"),
+      port: z.number().int().positive().default(993),
+      /** The mailbox to sign in as. */
+      user: z.string().optional(),
+      /** IMAP folder to read. A dedicated folder lets you drop toFilter. */
+      mailbox: z.string().default("INBOX"),
+      /**
+       * Only mail addressed to something containing this fragment is
+       * captured — e.g. "+paper" for you+paper@gmail.com. Without it every
+       * newsletter in the mailbox becomes a candidate.
+       */
+      toFilter: z.string().default("+paper"),
+      maxUrlsPerMessage: z.number().int().positive().default(5),
+    })
+    .prefault({}),
 });
 
 const PrintSchema = z.object({
@@ -190,6 +213,8 @@ export function loadConfig(explicitPath?: string): Config {
 export interface Secrets {
   readwiseToken?: string;
   inboxToken?: string;
+  /** IMAP password for the capture mailbox. On Gmail, an app password. */
+  emailPassword?: string;
   anthropicApiKey?: string;
   resendApiKey?: string;
   peechoApiKey?: string;
@@ -202,6 +227,7 @@ export function loadSecrets(): Secrets {
   return {
     readwiseToken: process.env.READWISE_TOKEN,
     inboxToken: process.env.INBOX_TOKEN,
+    emailPassword: process.env.EMAIL_PASSWORD,
     anthropicApiKey: process.env.ANTHROPIC_API_KEY,
     resendApiKey: process.env.RESEND_API_KEY,
     peechoApiKey: process.env.PEECHO_API_KEY,

@@ -18,7 +18,9 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.120.0",
     "@mozilla/readability": "^0.6.0",
+    "imapflow": "^1.7.4",
     "jsdom": "^26.0.0",
+    "mailparser": "^3.9.16",
     "pdf-lib": "^1.17.1",
     "playwright": "^1.50.0",
     "qrcode": "^1.5.4",
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "@types/jsdom": "^21.1.7",
+    "@types/mailparser": "^3.4.6",
     "@types/node": "^22.10.0",
     "@types/qrcode": "^1.5.5",
     "tsx": "^4.19.2",

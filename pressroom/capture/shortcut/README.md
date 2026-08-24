@@ -3,7 +3,35 @@
 The whole system is worth nothing if saving a link takes more than two taps.
 Set up one of these once and never think about it again.
 
-## Option A — Readwise Reader (recommended)
+## Option A — forward it to an email address (nothing to deploy)
+
+The lowest-setup route. Any share sheet on any device already has Mail in it,
+and a forwarded newsletter works the same as a shared link.
+
+1. Use a plus-address of your existing mailbox: `you+paper@gmail.com`. Mail
+   sent there lands in your normal inbox, and the pipeline reads only the mail
+   addressed to it — the rest of your inbox is never touched.
+2. Create an app password. On Gmail that is
+   <https://myaccount.google.com/apppasswords>, which requires 2-step
+   verification to be on. This is **not** your account password, and it can be
+   revoked on its own.
+3. Put it in the environment as `EMAIL_PASSWORD`, and set
+   `sources.email.enabled`, `sources.email.user` in `pressroom.config.json`.
+
+Saving is then: **share sheet → Mail → send to `you+paper@…`**.
+
+A message can carry several links; each becomes its own candidate. Anything
+you type above the link becomes your note, which is the strongest curation
+signal there is. `#print` and `#skip` anywhere in the subject work as tags.
+
+The connection is read-only IMAP: the mailbox is never modified — no flags, no
+moves, no deletes.
+
+**A dedicated mailbox works too.** If you would rather not use a plus-address,
+make a filter that files the mail into a folder, set `sources.email.mailbox`
+to that folder and `sources.email.toFilter` to `""`.
+
+## Option B — Readwise Reader (best reading experience)
 
 Reader already has the share sheet extension, native X/Twitter sync, YouTube
 with transcripts, and an email address for newsletters. If you use it, you get
@@ -25,7 +53,7 @@ carry weight in curation:
 
 Anything else you type is treated as a topic hint.
 
-## Option B — the self-hosted inbox (free, yours)
+## Option C — the self-hosted inbox (free, yours)
 
 `capture/worker` is a Cloudflare Worker with a D1 table behind it. Two useful
 endpoints: `POST /save` for your phone, `GET /items` for the pipeline. It will

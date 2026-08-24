@@ -3,6 +3,7 @@ import type { Config, Secrets } from "../config.js";
 import type { SavedItem } from "../types.js";
 import { fetchReadwiseItems } from "./readwise.js";
 import { fetchInboxItems } from "./inbox.js";
+import { fetchEmailItems } from "./email.js";
 
 /** The slice of time one issue covers. */
 export interface MonthWindow {
@@ -95,9 +96,14 @@ export async function collectSavedItems(
     batches.push(await fetchInboxItems(config, window, secrets.inboxToken));
   }
 
+  if (config.sources.email.enabled) {
+    batches.push(await fetchEmailItems(config, window, secrets));
+  }
+
   if (batches.length === 0) {
     throw new Error(
-      "No sources are enabled. Turn on sources.readwise or sources.inbox in pressroom.config.json.",
+      "No sources are enabled. Turn on sources.readwise, sources.email, or " +
+        "sources.inbox in pressroom.config.json.",
     );
   }
 

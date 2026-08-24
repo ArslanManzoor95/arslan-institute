@@ -11,6 +11,15 @@
       "locations": ["new", "later", "shortlist", "archive"],
       "withHtmlContent": true
     },
+    "email": {
+      "enabled": false,
+      "host": "imap.gmail.com",
+      "port": 993,
+      "user": "you@gmail.com",
+      "mailbox": "INBOX",
+      "toFilter": "+paper",
+      "maxUrlsPerMessage": 5
+    },
     "inbox": {
       "enabled": false,
       "endpoint": "https://pressroom-inbox.YOUR-SUBDOMAIN.workers.dev"

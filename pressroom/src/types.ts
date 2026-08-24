@@ -1,7 +1,7 @@
 /** Shared domain types for the pipeline. */
 
 /** Where an item was captured from. */
-export type SourceName = "readwise" | "inbox";
+export type SourceName = "readwise" | "inbox" | "email";
 
 /** What kind of thing the link points at. Drives enrichment and layout. */
 export type MediaKind =

@@ -8,9 +8,9 @@ Approve it and it goes to print. Ignore it and nothing happens.
   phone (share sheet)          the 1st of the month              you
         │                              │                          │
         ▼                              ▼                          ▼
-  Readwise Reader  ──┐        fetch ─ read ─ score ─          approve the
-   or your own       ├──────▶ select ─ typeset ─ ▶ proof ──▶  purchase
-   capture inbox   ──┘        preflight              email     (one click)
+  forward to email ──┐        fetch ─ read ─ score ─          approve the
+  Readwise Reader    ├──────▶ select ─ typeset ─ ▶ proof ──▶  purchase
+  your own inbox   ──┘        preflight              email     (one click)
                                                                   │
                                                                   ▼
                                                           289×380mm newsprint
@@ -49,9 +49,17 @@ cp .env.example .env                      # then fill it in
 npm run pressroom -- doctor               # tells you what is still missing
 ```
 
-Then set up capture — see [`capture/shortcut/README.md`](capture/shortcut/README.md).
-Readwise Reader is the least work; the bundled Cloudflare Worker is the free,
-self-hosted alternative and can mirror into Reader as well.
+Then pick a capture route — all three can run at once, and everything they
+collect is merged and de-duplicated:
+
+| Route | Setup | How you save |
+|---|---|---|
+| **Email** | An app password. Nothing to deploy. | Share → Mail → send to `you+paper@…` |
+| **Readwise Reader** | An account (~$10/mo) and an API token. | Share → Reader |
+| **Self-hosted inbox** | Deploy the bundled Worker (~10 min). | Share → your Shortcut |
+
+Details for each are in
+[`capture/shortcut/README.md`](capture/shortcut/README.md).
 
 Build last month's issue:
 
@@ -88,9 +96,10 @@ and ranks with a transparent heuristic, which is useful for a dry run.
    Approving is the purchase decision. It expires on its own if you never
    click, and nothing is spent.
 
-Repository secrets: `READWISE_TOKEN`, `ANTHROPIC_API_KEY`, `RESEND_API_KEY`,
-and `INBOX_TOKEN` / `PEECHO_*` if you use those. `PUBLIC_ASSET_BASE` goes in
-repository *variables*.
+Repository secrets: `ANTHROPIC_API_KEY`, `RESEND_API_KEY`, plus whichever
+capture route you use — `EMAIL_PASSWORD`, `READWISE_TOKEN`, `INBOX_TOKEN` —
+and `PEECHO_*` for automated ordering. `PUBLIC_ASSET_BASE` goes in repository
+*variables*.
 
 ## Printing
 
@@ -155,7 +164,7 @@ answer.
 
 ```
 src/
-  sources/     readwise + self-hosted inbox → one normalised SavedItem list
+  sources/     email + readwise + self-hosted inbox → one normalised list
   enrich/      article extraction, YouTube transcripts, Open Graph fallback
   curate/      claude.ts scores and writes copy; index.ts does the selecting
   render/      newsprint.css, HTML assembly, Playwright → PDF, QR codes
