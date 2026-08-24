@@ -1,0 +1,54 @@
+{
+  "masthead": "The Arslan Review",
+  "motto": "Everything worth keeping from the month just gone",
+  "firstIssueNumber": 1,
+  "firstIssueMonth": "2026-08",
+  "timezone": "Europe/London",
+
+  "sources": {
+    "email": {
+      "enabled": true,
+      "host": "imap.gmail.com",
+      "port": 993,
+      "user": "arslan.manzoor57@gmail.com",
+      "mailbox": "INBOX",
+      "toFilter": "+paper",
+      "maxUrlsPerMessage": 5
+    },
+    "readwise": { "enabled": false },
+    "inbox": { "enabled": false }
+  },
+
+  "curation": {
+    "maxPieces": 14,
+    "minPieces": 5,
+    "pageBudget": 24,
+    "maxPerKind": { "video": 3, "post": 3, "thread": 2 },
+    "model": "claude-opus-5",
+    "effort": "high",
+    "alwaysPrintTags": ["print", "must-read"],
+    "neverPrintTags": ["skip", "reference"],
+    "tasteNotes": "REWRITE THIS IN YOUR OWN WORDS — it is the highest-leverage line in this file, and it outweighs the model's own taste. Say what you want to read on paper and what you always regret printing. Starting point, edit freely: I want arguments and reported pieces I will still care about in a month — how institutions actually change, education and how people learn, AI where it touches real work rather than demos. I do not want product launches, funding news, hot takes, or anything whose only value is that it is new. If a piece is mostly a link to somewhere else, leave it out."
+  },
+
+  "layout": {
+    "pageWidthMm": 289,
+    "pageHeightMm": 380,
+    "marginMm": 15,
+    "columns": 4,
+    "bodyPt": 9.8,
+    "leadingPt": 13.2,
+    "minPages": 4,
+    "maxPages": 32,
+    "pageMultiple": 4
+  },
+
+  "print": {
+    "vendor": "newspaperclub",
+    "copies": 1,
+    "colour": "greyscale",
+    "outDir": "out"
+  },
+
+  "delivery": {}
+}

@@ -31,6 +31,7 @@ jobs:
     timeout-minutes: 45
     outputs:
       month: ${{ steps.build.outputs.month }}
+      built: ${{ steps.build.outputs.built }}
     steps:
       - uses: actions/checkout@v4
 
@@ -62,26 +63,40 @@ jobs:
           MONTH="${{ inputs.month }}"
           if [ -z "$MONTH" ]; then MONTH=$(date -u -d "last month" +%Y-%m); fi
           echo "month=$MONTH" >> "$GITHUB_OUTPUT"
+
           npm run pressroom -- run --month "$MONTH" ${{ inputs.no-ai && '--no-ai' || '' }}
+
+          # A month with nothing worth printing is a real outcome. Record it
+          # so the approval step is skipped rather than asking you to approve
+          # a paper that does not exist.
+          if [ -f "out/issue-$MONTH.print.pdf" ]; then
+            echo "built=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "built=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Summarise the issue
         if: always()
         run: |
           MONTH="${{ steps.build.outputs.month }}"
           {
-            echo "## Issue for $MONTH"
-            echo
             if [ -f "out/issue-$MONTH.json" ]; then
               node -e '
                 const issue = require(`./out/issue-${process.argv[1]}.json`);
-                console.log(`**${issue.masthead}** No. ${issue.number} — ${issue.pageCount} pages, ${issue.pieces.length} pieces\n`);
+                console.log(`## ${issue.masthead} No. ${issue.number} — ${issue.monthLabel}`);
+                console.log(`\n**${issue.pageCount} pages · ${issue.pieces.length} pieces · ${issue.stats.captured} saved**\n`);
+                console.log(`Download **issue-${issue.month}** from the Artifacts section of this run to read the proof.\n`);
+                console.log(`### Inside\n`);
                 for (const [i, p] of issue.pieces.entries()) {
                   console.log(`${i + 1}. **${p.headline}** — _${p.verdict.section}_ · ${p.verdict.pitch}`);
                 }
-                console.log(`\n${issue.spike.length} spiked.`);
+                console.log(`\n${issue.spike.length} pieces were spiked; they are listed on the back page.`);
+                console.log(`\n---\n**To print it:** approve the \`print-approval\` deployment below, then follow the two-line checklist it prints.`);
               ' "$MONTH"
             else
-              echo "No issue was produced. Check the build log."
+              echo "## No issue for $MONTH"
+              echo
+              echo "Either nothing was saved, or nothing cleared the bar. No approval is needed."
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
@@ -98,6 +113,7 @@ jobs:
 
   order:
     needs: build
+    if: needs.build.outputs.built == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     # Add yourself as a required reviewer on this environment. Approving it

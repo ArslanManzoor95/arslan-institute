@@ -37,6 +37,9 @@ Approve it and it goes to print. Ignore it and nothing happens.
 Everything that did not make the cut is printed on the back page under
 "The spike", with the reason. Nothing you saved disappears silently.
 
+**Setting this up for the first time? Read [SETUP.md](SETUP.md)** — four steps,
+about fifteen minutes, and then it runs itself.
+
 ## Quick start
 
 ```bash
